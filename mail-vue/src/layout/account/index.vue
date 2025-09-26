@@ -135,6 +135,7 @@ import {useAccountStore} from "@/store/account.js";
 import {useUserStore} from "@/store/user.js";
 import {hasPerm} from "@/perm/perm.js"
 import {useI18n} from "vue-i18n";
+import reservedWordsUtils from "@/utils/reserved-words-utils.js";
 
 const {t} = useI18n();
 const userStore = useUserStore();
@@ -385,6 +386,19 @@ function submit() {
       plain: true
     })
     return
+  }
+
+  // Validate reserved words
+  const reservedValidation = reservedWordsUtils.validateUsername(addForm.email);
+  if (!reservedValidation.isValid) {
+    if (reservedValidation.reason === 'reservedWord') {
+      ElMessage({
+        message: t('reservedWordError'),
+        type: "error",
+        plain: true
+      })
+      return
+    }
   }
 
   if (!verifyToken && (settingStore.settings.addEmailVerify === 0 || (settingStore.settings.addEmailVerify === 2 && settingStore.settings.addVerifyOpen))) {

@@ -63,6 +63,8 @@ const en = {
 	publicTokenFail: 'Token validation failed',
 	notAdmin: 'The entered email is not an administrator email',
 	emailExistDatabase: 'Email already exists in the database',
+	reservedWordError: 'This username is a reserved word and cannot be used',
+	shortAlphanumericError: 'Usernames with 3 characters or less containing only letters and numbers cannot be used',
 	perms: {
 		"邮件": "Email",
 		"邮件发送": "Send Email",

@@ -1,12 +1,25 @@
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
+import 'dayjs/locale/ca'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 import {useSettingStore} from "@/store/setting.js";
 const settingStore = useSettingStore();
 dayjs.extend(utc)
 dayjs.extend(timezone)
-dayjs.locale(settingStore.lang === 'en' ? 'en' : 'zh-cn')
+
+const getDayjsLocale = () => {
+  switch (settingStore.lang) {
+    case 'zh':
+      return 'zh-cn';
+    case 'ca':
+      return 'ca';
+    default:
+      return 'en';
+  }
+}
+
+dayjs.locale(getDayjsLocale())
 const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
 export function fromNow(date) {
@@ -33,6 +46,22 @@ export function fromNow(date) {
             ? d.format('MMM D')
             : d.format('YYYY/MM/DD');
 
+    } else if (settingStore.lang === 'ca') {
+
+        if (isToday) {
+            if (diffSeconds < 60) return `Ara mateix`;
+            if (diffMinutes < 60) return `Fa ${diffMinutes} min`;
+            if (diffHours < 2) return `Fa ${diffHours} hora${diffHours > 1 ? 's' : ''}`;
+            return d.format('HH:mm');
+        }
+
+        if (now.subtract(1, 'day').isSame(d, 'day')) {
+            return `Ahir ${d.format('HH:mm')}`;
+        }
+
+        return d.year() === now.year()
+            ? d.format('D MMM')
+            : d.format('DD/MM/YYYY');
 
     } else {
 
@@ -67,6 +96,10 @@ export function formatDetailDate(time) {
         return isSameYear
             ? d.format('ddd, MMM D, h:mm A')
             : d.format('ddd, MMM D, YYYY, h:mm A');
+    } else if (settingStore.lang === 'ca') {
+        return isSameYear
+            ? d.format('ddd, D MMM, h:mm A')
+            : d.format('ddd, D MMM YYYY, h:mm A');
     } else {
         return d.format('YYYY年M月D日 ddd AH:mm');
     }
@@ -81,5 +114,6 @@ export function toUtc(time) {
 }
 
 export function setExtend(lang) {
-    dayjs.locale(lang)
+    const locale = lang === 'zh' ? 'zh-cn' : lang === 'ca' ? 'ca' : 'en';
+    dayjs.locale(locale)
 }

@@ -63,6 +63,8 @@ const zh = {
 	publicTokenFail: 'token验证失败',
 	notAdmin: '输入的邮箱不是管理员邮箱',
 	emailExistDatabase: '有邮箱已存在数据库中',
+	reservedWordError: '此用户名为保留字，不能使用',
+	shortAlphanumericError: '3个字符以内的纯英数字用户名不能使用',
 	perms: {
 		"邮件": "邮件",
 		"邮件发送": "邮件发送",

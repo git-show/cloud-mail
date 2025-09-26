@@ -16,6 +16,7 @@ import saltHashUtils from '../utils/crypto-utils';
 import constant from '../const/constant';
 import { t } from '../i18n/i18n'
 import reqUtils from '../utils/req-utils';
+import reservedWordsUtils from '../utils/reserved-words-utils';
 
 const userService = {
 
@@ -296,6 +297,17 @@ const userService = {
 
 		if (password.length < 6) {
 			throw new BizError(t('pwdMinLengthLimit'));
+		}
+
+		// Validate reserved words
+		const username = emailUtils.getName(email);
+		const reservedWordsValidation = reservedWordsUtils.validateEmailUsername(email);
+		if (!reservedWordsValidation.isValid) {
+			if (reservedWordsValidation.reason === 'reservedWord') {
+				throw new BizError(t('reservedWordError'));
+			} else if (reservedWordsValidation.reason === 'shortAlphanumericError') {
+				throw new BizError(t('shortAlphanumericError'));
+			}
 		}
 
 		const accountRow = await accountService.selectByEmailIncludeDel(c, email);

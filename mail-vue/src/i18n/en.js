@@ -291,7 +291,15 @@ const en = {
     clear: 'Clear',
     include: 'Include',
     delAllEmailConfirm: 'Do you really want to delete it?',
-    s3Configuration: 'S3 Configuration'
+    s3Configuration: 'S3 Configuration',
+    
+    // Reserved words related translations
+    reservedWordError: 'This username is a reserved word and cannot be used',
+    shortAlphanumericError: 'Usernames with 3 characters or less containing only letters and numbers cannot be used',
+    reservedWords: 'Reserved Words',
+    reservedWordsDesc: 'List of reserved words that cannot be used as usernames',
+    customReservedWords: 'Custom Reserved Words',
+    customReservedWordsDesc: 'Add custom reserved words, separated by commas'
 }
 
 export default en

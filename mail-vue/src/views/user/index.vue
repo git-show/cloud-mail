@@ -304,6 +304,7 @@ import {isEmail} from "@/utils/verify-utils.js";
 import {useRoleStore} from "@/store/role.js";
 import {useUserStore} from "@/store/user.js";
 import {useI18n} from 'vue-i18n';
+import reservedWordsUtils from "@/utils/reserved-words-utils.js";
 
 defineOptions({
   name: 'user'
@@ -568,6 +569,19 @@ function submit() {
       plain: true
     })
     return
+  }
+
+  // Validate reserved words
+  const reservedValidation = reservedWordsUtils.validateUsername(addForm.email);
+  if (!reservedValidation.isValid) {
+    if (reservedValidation.reason === 'reservedWord') {
+      ElMessage({
+        message: t('reservedWordError'),
+        type: "error",
+        plain: true
+      })
+      return
+    }
   }
 
   if (!addForm.password) {

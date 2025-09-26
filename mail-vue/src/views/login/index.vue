@@ -118,6 +118,7 @@ import {cvtR2Url} from "@/utils/convert.js";
 import {loginUserInfo} from "@/request/my.js";
 import {permsToRouter} from "@/perm/perm.js";
 import {useI18n} from "vue-i18n";
+import reservedWordsUtils from "@/utils/reserved-words-utils.js";
 
 const {t} = useI18n();
 const accountStore = useAccountStore();
@@ -264,6 +265,19 @@ function submitRegister() {
       plain: true,
     })
     return
+  }
+
+  // Validate reserved words
+  const reservedValidation = reservedWordsUtils.validateUsername(registerForm.email);
+  if (!reservedValidation.isValid) {
+    if (reservedValidation.reason === 'reservedWord') {
+      ElMessage({
+        message: t('reservedWordError'),
+        type: 'error',
+        plain: true,
+      })
+      return
+    }
   }
 
   if (!registerForm.password) {
