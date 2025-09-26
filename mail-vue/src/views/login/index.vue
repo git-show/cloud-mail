@@ -1,5 +1,6 @@
 <template>
   <div id="login-box">
+    <LanguageSwitch class="login-lang-switch" :teleported="true" />
     <div id="background-wrap" v-if="!settingStore.settings.background">
       <div class="x1 cloud"></div>
       <div class="x2 cloud"></div>
@@ -119,6 +120,7 @@ import {loginUserInfo} from "@/request/my.js";
 import {permsToRouter} from "@/perm/perm.js";
 import {useI18n} from "vue-i18n";
 import reservedWordsUtils from "@/utils/reserved-words-utils.js";
+import LanguageSwitch from "@/components/language-switch/index.vue";
 
 const {t} = useI18n();
 const accountStore = useAccountStore();
@@ -543,6 +545,24 @@ function submitRegister() {
   overflow-x: hidden;
   display: grid;
   grid-template-columns: 1fr;
+  position: relative;
+}
+
+
+.login-lang-switch {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 20;
+
+  @media (max-width: 767px) {
+    top: 18px;
+    right: 18px;
+  }
+
+  :deep(.language-switch__chip) {
+    backdrop-filter: blur(10px);
+  }
 }
 
 

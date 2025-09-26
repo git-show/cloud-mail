@@ -31,13 +31,8 @@
       </div>
       <div class="item">
         <div>{{$t('language')}}</div>
-        <div>
-          <el-select v-model="selectedLanguage" @change="changeLanguage" style="width: 120px">
-            <el-option label="English" value="en"></el-option>
-            <el-option label="中文" value="zh"></el-option>
-            <el-option label="日本語" value="ja"></el-option>
-            <el-option label="Català" value="ca"></el-option>
-          </el-select>
+        <div class="language-action">
+          <LanguageSwitch class="settings-lang-switch" toast-on-change />
         </div>
       </div>
     </div>
@@ -68,16 +63,15 @@ import {accountSetName} from "@/request/account.js";
 import {useAccountStore} from "@/store/account.js";
 import {useI18n} from "vue-i18n";
 import {useSettingStore} from "@/store/setting.js";
-import {setExtend} from "@/utils/day.js";
+import LanguageSwitch from "@/components/language-switch/index.vue";
 
-const { t, locale } = useI18n()
+const { t } = useI18n()
 const accountStore = useAccountStore()
 const userStore = useUserStore();
 const settingStore = useSettingStore();
 const setPwdLoading = ref(false)
 const setNameShow = ref(false)
 const accountName = ref(null)
-const selectedLanguage = ref(settingStore.lang || 'en')
 
 defineOptions({
   name: 'setting'
@@ -193,17 +187,6 @@ function submitPwd() {
 
 }
 
-function changeLanguage(lang) {
-  settingStore.lang = lang
-  locale.value = lang
-  setExtend(lang)
-  ElMessage({
-    message: t('saveSuccessMsg'),
-    type: 'success',
-    plain: true,
-  })
-}
-
 </script>
 <style scoped lang="scss">
 .box {
@@ -280,6 +263,17 @@ function changeLanguage(lang) {
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+}
+
+.language-action {
+  display: flex;
+  align-items: center;
+}
+
+.settings-lang-switch {
+  :deep(.language-switch__chip) {
+    min-width: 140px;
   }
 }
 </style>

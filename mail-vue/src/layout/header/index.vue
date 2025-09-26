@@ -16,22 +16,7 @@
       <div v-else class="dark-icon icon-item" @click="openDark($event)">
         <Icon icon="solar:moon-linear"/>
       </div>
-      <el-dropdown class="lang-switch" trigger="click" :teleported="false" popper-class="lang-switch-dropdown" @command="changeLang">
-        <div class="lang-chip">
-          <Icon :icon="currentLanguage.icon" class="lang-flag" width="18" height="18"/>
-          <span class="lang-label">{{ currentLanguage.label }}</span>
-          <Icon icon="mingcute:down-small-fill" class="lang-arrow" width="18" height="18"/>
-        </div>
-        <template #dropdown>
-          <el-dropdown-menu>
-            <el-dropdown-item v-for="option in languageOptions" :key="option.value" :command="option.value" :class="{ 'is-active': option.value === locale.value }">
-              <Icon :icon="option.icon" class="lang-option-flag" width="18" height="18"/>
-              <span class="lang-option-label">{{ option.label }}</span>
-              <Icon v-if="option.value === locale.value" icon="mdi:check-bold" class="lang-check" width="16" height="16"/>
-            </el-dropdown-item>
-          </el-dropdown-menu>
-        </template>
-      </el-dropdown>
+      <LanguageSwitch class="header-lang-switch" :teleported="false" />
       <div class="notice icon-item" @click="openNotice">
         <Icon icon="streamline-plump:announcement-megaphone"/>
       </div>
@@ -93,6 +78,7 @@ import router from "@/router";
 import hanburger from '@/components/hamburger/index.vue'
 import {logout} from "@/request/login.js";
 import {Icon} from "@iconify/vue";
+import LanguageSwitch from "@/components/language-switch/index.vue";
 import {useUiStore} from "@/store/ui.js";
 import {useUserStore} from "@/store/user.js";
 import {useRoute} from "vue-router";
@@ -100,9 +86,8 @@ import {computed, ref} from "vue";
 import {useSettingStore} from "@/store/setting.js";
 import {hasPerm} from "@/perm/perm.js"
 import {useI18n} from "vue-i18n";
-import {setExtend} from "@/utils/day.js"
 
-const {t, locale} = useI18n();
+const {t} = useI18n();
 const route = useRoute();
 const settingStore = useSettingStore();
 const userStore = useUserStore();
@@ -164,31 +149,6 @@ const sendCount = computed(() => {
   return userStore.user.sendCount + '/' + userStore.user.role.sendCount
 })
 
-const languageOptions = computed(() => ([
-  {
-    value: 'en',
-    icon: 'twemoji:flag-united-kingdom',
-    label: t('languageEnglish')
-  },
-  {
-    value: 'zh',
-    icon: 'twemoji:flag-china',
-    label: t('languageChinese')
-  },
-  {
-    value: 'ja',
-    icon: 'twemoji:flag-japan',
-    label: t('languageJapanese')
-  },
-  {
-    value: 'ca',
-    icon: 'twemoji:flag-catalonia',
-    label: t('languageCatalan')
-  }
-]))
-
-const currentLanguage = computed(() => languageOptions.value.find(item => item.value === locale.value) || languageOptions.value[0])
-
 function userInfoHide(e) {
     if (userInfoShow.value) {
         userinfoRef.value.handleClose()
@@ -213,15 +173,6 @@ async function copyEmail(email) {
       plain: true,
     })
   }
-}
-
-function changeLang(lang) {
-  if (locale.value === lang) {
-    return
-  }
-  setExtend(lang)
-  settingStore.lang = lang
-  locale.value = lang
 }
 
 function openNotice() {
@@ -483,84 +434,12 @@ function formatName(email) {
     font-size: 24px;
   }
 
-  .lang-switch {
+  .header-lang-switch {
     align-self: center;
-    .lang-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 4px 12px;
-      border-radius: 999px;
-      background: linear-gradient(135deg, rgba(77, 171, 255, 0.18), rgba(91, 141, 255, 0.38));
-      border: 1px solid rgba(120, 165, 255, 0.35);
-      backdrop-filter: blur(6px);
-      transition: all 0.25s ease;
-      color: var(--el-text-color-primary);
+    :deep(.language-switch__chip) {
       min-width: 110px;
     }
-
-    .lang-chip:hover {
-      box-shadow: 0 6px 18px rgba(91, 141, 255, 0.25);
-      transform: translateY(-1px);
-    }
-
-    .lang-flag {
-      border-radius: 50%;
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
-    }
-
-    .lang-label {
-      font-weight: 600;
-      font-size: 12px;
-      letter-spacing: 0.4px;
-      white-space: nowrap;
-    }
-
-    .lang-arrow {
-      color: var(--regular-text-color);
-    }
   }
-
-
-.lang-switch-dropdown {
-  .el-dropdown-menu {
-    padding: 6px;
-    border-radius: 12px;
-    min-width: 160px;
-  }
-
-  .el-dropdown-menu__item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    border-radius: 8px;
-    padding: 8px 12px;
-    transition: background 0.2s ease;
-  }
-
-  .el-dropdown-menu__item:hover {
-    background: rgba(91, 141, 255, 0.12);
-  }
-
-  .el-dropdown-menu__item.is-active {
-    background: rgba(91, 141, 255, 0.18);
-    font-weight: 600;
-  }
-
-  .lang-option-flag {
-    border-radius: 50%;
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05);
-  }
-
-  .lang-option-label {
-    flex: 1;
-    font-size: 13px;
-  }
-
-  .lang-check {
-    color: #3a80dd;
-  }
-}
   .avatar {
     display: flex;
     align-items: center;
