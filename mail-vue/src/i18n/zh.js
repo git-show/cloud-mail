@@ -295,7 +295,7 @@ const zh = {
     
     // 保留字相关翻译
     reservedWordError: '此用户名为保留字，不能使用',
-    shortAlphanumericError: '3个字符以内的纯英数字用户名不能使用',
+    shortAlphanumericError: '3个字符以内的用户名不能使用',
     reservedWords: '保留字',
     reservedWordsDesc: '不能用作用户名的保留字列表',
     customReservedWords: '自定义保留字',

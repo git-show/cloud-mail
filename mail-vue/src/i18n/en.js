@@ -295,7 +295,7 @@ const en = {
     
     // Reserved words related translations
     reservedWordError: 'This username is a reserved word and cannot be used',
-    shortAlphanumericError: 'Usernames with 3 characters or less containing only letters and numbers cannot be used',
+    shortAlphanumericError: 'Usernames with 3 characters or less cannot be used',
     reservedWords: 'Reserved Words',
     reservedWordsDesc: 'List of reserved words that cannot be used as usernames',
     customReservedWords: 'Custom Reserved Words',

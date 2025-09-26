@@ -36,7 +36,7 @@ const reservedWordsUtils = {
         return false;
     },
 
-    // 檢查是否為3文字以內的純英數字
+    // 檢查是否為3文字以內的字符串（包含特殊字符）
     isShortAlphanumeric(name) {
         if (!name || typeof name !== 'string') {
             return false;
@@ -49,9 +49,8 @@ const reservedWordsUtils = {
             return false;
         }
 
-        // 只能包含英文字母和數字
-        const alphanumericRegex = /^[a-zA-Z0-9]+$/;
-        return alphanumericRegex.test(trimmedName);
+        // 3字符以內的任何字符串都被禁止（包含字母、數字和特殊字符）
+        return true;
     },
 
     // 獲取完整的保留字列表（用於前端顯示）

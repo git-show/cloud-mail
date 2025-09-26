@@ -66,7 +66,7 @@ const ca = {
 	
 	// Reserved words validation messages
 	reservedWordError: 'Aquest nom d\'usuari és una paraula reservada i no es pot utilitzar',
-	shortAlphanumericError: 'Els noms d\'usuari de 3 caràcters o menys que continguin només lletres i números no es poden utilitzar',
+	shortAlphanumericError: 'Els noms d\'usuari de 3 caràcters o menys no es poden utilitzar',
 	
 	perms: {
 		"邮件": "Correu",

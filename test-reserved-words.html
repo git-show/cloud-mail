@@ -20,11 +20,15 @@
             { email: 'admin@example.com', expected: false, reason: 'reservedWord' },
             { email: 'system@example.com', expected: false, reason: 'reservedWord' },
             
-            // Test short alphanumeric (3 chars or less)
+            // Test short usernames (3 chars or less, including special characters)
             { email: 'abc@example.com', expected: false, reason: 'reservedWord' },
             { email: '123@example.com', expected: false, reason: 'reservedWord' },
             { email: 'a1@example.com', expected: false, reason: 'reservedWord' },
             { email: 'xy@example.com', expected: false, reason: 'reservedWord' },
+            { email: 'a-b@example.com', expected: false, reason: 'reservedWord' },
+            { email: 'x_1@example.com', expected: false, reason: 'reservedWord' },
+            { email: 'a.b@example.com', expected: false, reason: 'reservedWord' },
+            { email: '1-2@example.com', expected: false, reason: 'reservedWord' },
             
             // Test valid usernames
             { email: 'user1234@example.com', expected: true },
@@ -34,8 +38,8 @@
             
             // Test edge cases
             { email: 'abcd@example.com', expected: true }, // 4 chars, should be valid
-            { email: 'test_user@example.com', expected: true }, // underscore, should be valid
-            { email: 'user-123@example.com', expected: true }, // hyphen, should be valid
+            { email: 'test_user@example.com', expected: true }, // 9 chars with underscore, should be valid
+            { email: 'user-123@example.com', expected: true }, // 8 chars with hyphen, should be valid
         ];
 
         function runTests() {

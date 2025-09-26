@@ -16,9 +16,10 @@
 - `user`, `users`, `guest`, `public`, `private`
 - `null`, `void`, `undefined`
 
-#### 3字符以內英數字限制
-所有3個字符或更少且只包含字母和數字的用戶名都被禁止使用，例如：
-- `abc`, `123`, `a1`, `xy`, `z99` 等
+### ✅ 2. 3字符以內用戶名限制
+- **自動檢測**：系統會自動識別3個字符或更少的用戶名（如 `abc`, `123`, `xy`, `a-b`, `x_1`）
+- **全面限制**：禁止所有3字符或更少的用戶名，包括純字母數字和包含特殊字符的組合
+- **雙重驗證**：前端和後端都會進行驗證
 
 #### 實現位置
 - **後端驗證**：
@@ -58,15 +59,15 @@
 
 **中文**
 - `reservedWordError`: "此用户名为保留字，不能使用"
-- `shortAlphanumericError`: "3个字符以内的纯英数字用户名不能使用"
+- `shortAlphanumericError`: "3个字符以内的用户名不能使用"
 
 **英文**
 - `reservedWordError`: "This username is a reserved word and cannot be used"
-- `shortAlphanumericError`: "Usernames with 3 characters or less containing only letters and numbers cannot be used"
+- `shortAlphanumericError`: "Usernames with 3 characters or less cannot be used"
 
 **加泰羅尼亞語**
 - `reservedWordError`: "Aquest nom d'usuari és una paraula reservada i no es pot utilitzar"
-- `shortAlphanumericError`: "Els noms d'usuari de 3 caràcters o menys que continguin només lletres i números no es poden utilitzar"
+- `shortAlphanumericError`: "Els noms d'usuari de 3 caràcters o menys no es poden utilitzar"
 
 ## 使用方法
 
@@ -100,6 +101,6 @@ open test-reserved-words.html
 ## 注意事項
 
 1. 保留字驗證不區分大小寫
-2. 3字符規則只適用於純字母數字組合（不包含特殊字符如 `-`, `_`, `.`）
+2. 3字符規則適用於所有字符組合（包含特殊字符如 `-`, `_`, `.`）
 3. 新語言支持包括界面翻譯和日期格式
 4. 錯誤消息會根據用戶選擇的語言顯示
