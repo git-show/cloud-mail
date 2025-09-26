@@ -2,7 +2,11 @@
 
 ## 新增功能
 
-### 1. 保留字驗證功能
+### 1. ### 支援的語言
+- 中文（簡體）
+- 英文
+- 加泰羅尼亞語
+- 日本語
 
 系統現在會阻止使用以下類型的用戶名：
 
@@ -34,24 +38,19 @@
   - `/mail-vue/src/views/login/index.vue` - 註冊表單驗證
   - `/mail-vue/src/layout/account/index.vue` - 賬戶添加表單驗證
 
-### 2. 加泰羅尼亞語（Catalan）支持
+## 3. 多語言對應 - 加泰羅尼亞語（Catalan）和日本語支援
 
-系統現在支援加泰羅尼亞語作為第三種語言選項。
+### 新增功能
+- 完整的加泰羅尼亞語界面翻譯
+- 完整的日本語界面翻譯
+- 日期和時間的本地化格式
+- Element Plus UI組件的多語言支援
 
-#### 新增文件
-- `/mail-vue/src/i18n/ca.js` - 前端加泰羅尼亞語翻譯
-- `/mail-worker/src/i18n/ca.js` - 後端加泰羅尼亞語翻譯
-
-#### 更新文件
-- `/mail-vue/src/i18n/index.js` - 添加加泰羅尼亞語支持
-- `/mail-worker/src/i18n/i18n.js` - 添加加泰羅尼亞語支持
-- `/mail-vue/src/App.vue` - 更新 Element Plus 語言配置
-- `/mail-vue/src/utils/day.js` - 添加加泰羅尼亞語日期格式支持
-
-#### 語言代碼
-- 中文：`zh`
-- 英文：`en`
-- 加泰羅尼亞語：`ca`
+### 技術實現
+- 前端：`/mail-vue/src/i18n/ca.js`, `/mail-vue/src/i18n/ja.js`
+- 後端：`/mail-worker/src/i18n/ca.js`, `/mail-worker/src/i18n/ja.js`
+- 日期本地化：支援加泰羅尼亞語和日本語日期格式
+- UI組件：Element Plus 多語言包
 
 ### 3. 錯誤消息
 
@@ -68,6 +67,10 @@
 **加泰羅尼亞語**
 - `reservedWordError`: "Aquest nom d'usuari és una paraula reservada i no es pot utilitzar"
 - `shortAlphanumericError`: "Els noms d'usuari de 3 caràcters o menys no es poden utilitzar"
+
+**日本語**
+- `reservedWordError`: "このユーザー名は予約語のため使用できません"
+- `shortAlphanumericError`: "3文字以下のユーザー名は使用できません"
 
 ## 使用方法
 

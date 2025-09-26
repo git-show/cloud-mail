@@ -29,6 +29,17 @@
           <el-button type="primary" @click="pwdShow = true">{{$t('changePwdBtn')}}</el-button>
         </div>
       </div>
+      <div class="item">
+        <div>{{$t('language')}}</div>
+        <div>
+          <el-select v-model="selectedLanguage" @change="changeLanguage" style="width: 120px">
+            <el-option label="English" value="en"></el-option>
+            <el-option label="中文" value="zh"></el-option>
+            <el-option label="日本語" value="ja"></el-option>
+            <el-option label="Català" value="ca"></el-option>
+          </el-select>
+        </div>
+      </div>
     </div>
     <div class="del-email" v-perm="'my:delete'">
       <div class="title">{{$t('deleteUser')}}</div>
@@ -56,13 +67,17 @@ import router from "@/router/index.js";
 import {accountSetName} from "@/request/account.js";
 import {useAccountStore} from "@/store/account.js";
 import {useI18n} from "vue-i18n";
+import {useSettingStore} from "@/store/setting.js";
+import {setExtend} from "@/utils/day.js";
 
-const { t } = useI18n()
+const { t, locale } = useI18n()
 const accountStore = useAccountStore()
 const userStore = useUserStore();
+const settingStore = useSettingStore();
 const setPwdLoading = ref(false)
 const setNameShow = ref(false)
 const accountName = ref(null)
+const selectedLanguage = ref(settingStore.lang || 'en')
 
 defineOptions({
   name: 'setting'
@@ -176,6 +191,17 @@ function submitPwd() {
     setPwdLoading.value = false
   })
 
+}
+
+function changeLanguage(lang) {
+  settingStore.lang = lang
+  locale.value = lang
+  setExtend(lang)
+  ElMessage({
+    message: t('saveSuccessMsg'),
+    type: 'success',
+    plain: true,
+  })
 }
 
 </script>

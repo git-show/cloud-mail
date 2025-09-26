@@ -10,6 +10,7 @@ import {useSettingStore} from "@/store/setting.js";
 const settingStore = useSettingStore()
 import zhCn from 'element-plus/es/locale/lang/zh-cn';
 import ca from 'element-plus/es/locale/lang/ca';
+import ja from 'element-plus/es/locale/lang/ja';
 import('@/icons/index.js')
 const { locale } = useI18n()
 locale.value = settingStore.lang
@@ -21,6 +22,8 @@ const getElementLocale = () => {
       return zhCn;
     case 'ca':
       return ca;
+    case 'ja':
+      return ja;
     default:
       return null; // English is default
   }

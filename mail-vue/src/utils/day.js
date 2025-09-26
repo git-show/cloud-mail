@@ -1,6 +1,7 @@
 import dayjs from 'dayjs'
 import 'dayjs/locale/zh-cn'
 import 'dayjs/locale/ca'
+import 'dayjs/locale/ja'
 import utc from 'dayjs/plugin/utc'
 import timezone from 'dayjs/plugin/timezone'
 import {useSettingStore} from "@/store/setting.js";
@@ -14,6 +15,8 @@ const getDayjsLocale = () => {
       return 'zh-cn';
     case 'ca':
       return 'ca';
+    case 'ja':
+      return 'ja';
     default:
       return 'en';
   }
@@ -114,6 +117,6 @@ export function toUtc(time) {
 }
 
 export function setExtend(lang) {
-    const locale = lang === 'zh' ? 'zh-cn' : lang === 'ca' ? 'ca' : 'en';
+    const locale = lang === 'zh' ? 'zh-cn' : lang === 'ca' ? 'ca' : lang === 'ja' ? 'ja' : 'en';
     dayjs.locale(locale)
 }

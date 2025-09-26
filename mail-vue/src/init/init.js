@@ -17,8 +17,12 @@ export async function init() {
     const token = localStorage.getItem('token');
     if (!settingStore.lang) {
         let lang = navigator.language.split('-')[0]
-        lang = lang === 'zh' ? lang : 'en'
-        settingStore.lang = lang
+        // サポートされている言語のみ設定、それ以外は英語をデフォルトに
+        if (['zh', 'ja', 'ca'].includes(lang)) {
+            settingStore.lang = lang
+        } else {
+            settingStore.lang = 'en'
+        }
     }
 
     i18n.global.locale.value = settingStore.lang
