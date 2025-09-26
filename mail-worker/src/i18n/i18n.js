@@ -6,14 +6,19 @@ import ja from './ja.js'
 import app from '../hono/hono';
 
 app.use('*', async (c, next) => {
-	const lang = c.req.header('accept-language')?.split('-')[0]
-	// サポートされている言語のみ設定、それ以外は英語をデフォルトに
 	const supportedLanguages = ['zh', 'en', 'ca', 'ja'];
-	const selectedLang = supportedLanguages.includes(lang) ? lang : 'en';
-	i18next.init({
-		lng: selectedLang,
-	});
-	return await next()
+	const acceptLanguage = c.req.header('accept-language');
+
+	const selectedLang = acceptLanguage
+		? acceptLanguage
+			.split(',')
+			.map(lang => lang.trim().split(';')[0])
+			.map(lang => lang.toLowerCase().split(/[_-]/)[0])
+			.find(lang => supportedLanguages.includes(lang)) || 'en'
+		: 'en';
+
+	await i18next.changeLanguage(selectedLang);
+	return await next();
 })
 
 const resources = {
