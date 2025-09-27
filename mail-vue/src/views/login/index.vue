@@ -90,7 +90,21 @@
           >
             <span style="font-size: 12px;color: #F56C6C" v-if="botJsError">{{ $t('verifyModuleFailed') }}</span>
           </div>
-          <el-button class="btn" type="primary" @click="submitRegister" :loading="registerLoading"
+          <div class="terms-agreement">
+            <div class="terms-item" @click="openTermsModal">
+              <Icon :icon="termsAgreed ? 'mingcute:check-circle-fill' : 'mingcute:close-circle-line'" 
+                    :class="['agreement-icon', termsAgreed ? 'agreed' : 'not-agreed']" 
+                    width="18" height="18" />
+              <span class="agreement-text">{{ $t('termsOfService') }}</span>
+            </div>
+            <div class="terms-item" @click="openPrivacyModal">
+              <Icon :icon="privacyAgreed ? 'mingcute:check-circle-fill' : 'mingcute:close-circle-line'" 
+                    :class="['agreement-icon', privacyAgreed ? 'agreed' : 'not-agreed']" 
+                    width="18" height="18" />
+              <span class="agreement-text">{{ $t('privacyPolicy') }}</span>
+            </div>
+          </div>
+          <el-button class="btn" type="primary" @click="submitRegister" :loading="registerLoading" :disabled="!isRegisterFormValid"
           >{{ $t('regBtn') }}
           </el-button>
         </div>
@@ -104,6 +118,93 @@
     </div>
   </div>
   <AppFooter class="login-footer" />
+  
+  <!-- 利用規約モーダル -->
+  <el-dialog v-model="showTermsModal" :title="$t('termsOfService')" width="80%" max-width="800px">
+    <div class="modal-content" @scroll="handleTermsScroll" ref="termsModalContent">
+      <h1>{{ termsContent.title }}</h1>
+      <p v-if="termsContent.effectiveDate" class="meta-text">{{ termsContent.effectiveDate }}</p>
+      <p v-if="termsContent.lastUpdated" class="meta-text">{{ termsContent.lastUpdated }}</p>
+      <p class="intro-text">{{ termsContent.intro }}</p>
+      <section
+        v-for="section in termsContent.sections"
+        :key="section.title"
+        class="content-section"
+      >
+        <h2>{{ section.title }}</h2>
+        <p
+          v-for="(paragraph, index) in section.paragraphs"
+          :key="`${section.title}-p-${index}`"
+        >
+          {{ paragraph }}
+        </p>
+        <ul v-if="section.bullets" class="bullet-list">
+          <li
+            v-for="(bullet, index) in section.bullets"
+            :key="`${section.title}-b-${index}`"
+          >
+            {{ bullet }}
+          </li>
+        </ul>
+      </section>
+    </div>
+    <template #footer>
+      <div class="modal-footer">
+        <el-checkbox v-model="termsModalAgreement" :disabled="!termsScrolledToBottom">
+          {{ $t('agreeToTerms') }}
+        </el-checkbox>
+        <div class="modal-buttons">
+          <el-button @click="showTermsModal = false">{{ $t('cancel') }}</el-button>
+          <el-button type="primary" @click="confirmTermsAgreement" :disabled="!termsModalAgreement">
+            {{ $t('confirm') }}
+          </el-button>
+        </div>
+      </div>
+    </template>
+  </el-dialog>
+
+  <!-- プライバシーポリシーモーダル -->
+  <el-dialog v-model="showPrivacyModal" :title="$t('privacyPolicy')" width="80%" max-width="800px">
+    <div class="modal-content" @scroll="handlePrivacyScroll" ref="privacyModalContent">
+      <h1>{{ privacyContent.title }}</h1>
+      <p v-if="privacyContent.effectiveDate" class="meta-text">{{ privacyContent.effectiveDate }}</p>
+      <p class="intro-text">{{ privacyContent.intro }}</p>
+      <section
+        v-for="section in privacyContent.sections"
+        :key="section.title"
+        class="content-section"
+      >
+        <h2>{{ section.title }}</h2>
+        <p
+          v-for="(paragraph, index) in section.paragraphs"
+          :key="`${section.title}-p-${index}`"
+        >
+          {{ paragraph }}
+        </p>
+        <ul v-if="section.bullets" class="bullet-list">
+          <li
+            v-for="(bullet, index) in section.bullets"
+            :key="`${section.title}-b-${index}`"
+          >
+            {{ bullet }}
+          </li>
+        </ul>
+      </section>
+    </div>
+    <template #footer>
+      <div class="modal-footer">
+        <el-checkbox v-model="privacyModalAgreement" :disabled="!privacyScrolledToBottom">
+          {{ $t('agreeToPrivacy') }}
+        </el-checkbox>
+        <div class="modal-buttons">
+          <el-button @click="showPrivacyModal = false">{{ $t('cancel') }}</el-button>
+          <el-button type="primary" @click="confirmPrivacyAgreement" :disabled="!privacyModalAgreement">
+            {{ $t('confirm') }}
+          </el-button>
+        </div>
+      </div>
+    </template>
+  </el-dialog>
   </div>
 </template>
 
@@ -126,7 +227,7 @@ import reservedWordsUtils from "@/utils/reserved-words-utils.js";
 import LanguageSwitch from "@/components/language-switch/index.vue";
 import AppFooter from "@/components/app-footer/index.vue";
 
-const {t} = useI18n();
+const {t, tm} = useI18n();
 const accountStore = useAccountStore();
 const userStore = useUserStore();
 const uiStore = useUiStore();
@@ -154,6 +255,22 @@ let verifyToken = ''
 let turnstileId = null
 let botJsError = ref(false)
 let verifyErrorCount = 0
+const termsAgreed = ref(false)
+const privacyAgreed = ref(false)
+const showTermsModal = ref(false)
+const showPrivacyModal = ref(false)
+const termsScrolledToBottom = ref(false)
+const privacyScrolledToBottom = ref(false)
+const termsModalAgreement = ref(false)
+const privacyModalAgreement = ref(false)
+
+const isRegisterFormValid = computed(() => {
+  return registerForm.email && 
+         registerForm.password && 
+         registerForm.confirmPassword && 
+         termsAgreed.value && 
+         privacyAgreed.value
+})
 
 window.onTurnstileSuccess = (token) => {
   verifyToken = token;
@@ -182,6 +299,67 @@ window.loadAfter = (e) => {
 
 window.loadBefore = (e) => {
   console.log('loadBefore')
+}
+
+// 利用規約・プライバシーポリシーのコンテンツ
+const termsContent = computed(() => {
+  const content = tm('terms') || {}
+  return {
+    title: content.title || '',
+    intro: content.intro || '',
+    sections: content.sections || [],
+    effectiveDate: content.effectiveDate || '',
+    lastUpdated: content.lastUpdated || ''
+  }
+})
+
+const privacyContent = computed(() => {
+  const content = tm('privacy') || {}
+  return {
+    title: content.title || '',
+    intro: content.intro || '',
+    sections: content.sections || [],
+    effectiveDate: content.effectiveDate || ''
+  }
+})
+
+// モーダル制御関数
+const openTermsModal = () => {
+  showTermsModal.value = true
+  termsScrolledToBottom.value = false
+  termsModalAgreement.value = false
+}
+
+const openPrivacyModal = () => {
+  showPrivacyModal.value = true
+  privacyScrolledToBottom.value = false
+  privacyModalAgreement.value = false
+}
+
+// スクロール監視関数
+const handleTermsScroll = (event) => {
+  const { scrollTop, scrollHeight, clientHeight } = event.target
+  if (scrollTop + clientHeight >= scrollHeight - 10) {
+    termsScrolledToBottom.value = true
+  }
+}
+
+const handlePrivacyScroll = (event) => {
+  const { scrollTop, scrollHeight, clientHeight } = event.target
+  if (scrollTop + clientHeight >= scrollHeight - 10) {
+    privacyScrolledToBottom.value = true
+  }
+}
+
+// 同意確認関数
+const confirmTermsAgreement = () => {
+  termsAgreed.value = true
+  showTermsModal.value = false
+}
+
+const confirmPrivacyAgreement = () => {
+  privacyAgreed.value = true
+  showPrivacyModal.value = false
 }
 
 const loginOpacity = computed(() => {
@@ -254,6 +432,15 @@ const submit = () => {
 
 
 function submitRegister() {
+
+  if (!termsAgreed.value || !privacyAgreed.value) {
+    ElMessage({
+      message: t('agreeToTermsRequired'),
+      type: 'error',
+      plain: true,
+    })
+    return
+  }
 
   if (!registerForm.email) {
     ElMessage({
@@ -368,6 +555,12 @@ function submitRegister() {
     registerForm.password = ''
     registerForm.confirmPassword = ''
     registerForm.code = ''
+    termsAgreed.value = false
+    privacyAgreed.value = false
+    termsScrolledToBottom.value = false
+    privacyScrolledToBottom.value = false
+    termsModalAgreement.value = false
+    privacyModalAgreement.value = false
     registerLoading.value = false
     verifyToken = ''
     settingStore.settings.regVerifyOpen = regVerifyOpen
@@ -520,6 +713,102 @@ function submitRegister() {
 
 .register-turnstile {
   margin-bottom: 18px;
+}
+
+.terms-agreement {
+  margin-bottom: 18px;
+  font-size: 14px;
+  width: 100%;
+  
+  .terms-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+    
+    &:hover {
+      background-color: var(--el-fill-color-light);
+    }
+    
+    .agreement-icon {
+      margin-right: 8px;
+      
+      &.agreed {
+        color: var(--el-color-success);
+      }
+      
+      &.not-agreed {
+        color: var(--el-color-error);
+      }
+    }
+    
+    .agreement-text {
+      color: var(--el-text-color-primary);
+      font-weight: 500;
+    }
+  }
+}
+
+.modal-content {
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 20px 0;
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 16px;
+    color: var(--el-text-color-primary);
+  }
+  
+  h2 {
+    font-size: 18px;
+    margin: 20px 0 12px 0;
+    color: var(--el-text-color-primary);
+  }
+  
+  .meta-text {
+    font-size: 14px;
+    color: var(--el-text-color-secondary);
+    margin-bottom: 8px;
+  }
+  
+  .intro-text {
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  
+  .content-section {
+    margin-bottom: 24px;
+    
+    p {
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+    
+    .bullet-list {
+      margin-left: 20px;
+      
+      li {
+        margin-bottom: 8px;
+        line-height: 1.6;
+      }
+    }
+  }
+}
+
+.modal-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
 }
 
 .select {
