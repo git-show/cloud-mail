@@ -275,7 +275,84 @@ const ca = {
     reservedWords: 'Paraules reservades',
     reservedWordsDesc: 'Llista de paraules reservades que no es poden utilitzar com a noms d\'usuari',
     customReservedWords: 'Paraules reservades personalitzades',
-    customReservedWordsDesc: 'Afegir paraules reservades personalitzades, separades per comes'
+    customReservedWordsDesc: 'Afegir paraules reservades personalitzades, separades per comes',
+
+    footer: {
+        terms: 'Condicions del servei',
+        copyright: '© {year} cats.cat'
+    },
+    terms: {
+        title: 'Condicions del servei de cats.cat',
+        intro: 'Aquestes Condicions del Servei (d\'ara endavant, «Condicions») estableixen els termes d\'ús del servei de correu que ofereix cats.cat (d\'ara endavant, el «Servei»). En crear un compte o utilitzar el Servei, l\'usuari (d\'ara endavant, «Usuari») accepta aquestes Condicions.',
+        sections: [
+            {
+                title: 'Article 1 (Compte)',
+                paragraphs: [
+                    'L\'Usuari ha de facilitar informació veraç i precisa en registrar el compte.',
+                    'L\'Usuari és responsable de gestionar estrictament la contrasenya del compte i no pot permetre\'n l\'ús a tercers. Totes les accions realitzades amb la contrasenya es consideraran accions de l\'Usuari.'
+                ]
+            },
+            {
+                title: 'Article 2 (Drets de propietat intel·lectual)',
+                paragraphs: [
+                    'Tots els drets de propietat intel·lectual relacionats amb el Servei corresponen al Servei o als titulars que n\'han concedit la llicència.'
+                ]
+            },
+            {
+                title: 'Article 3 (Accions prohibides)',
+                paragraphs: [
+                    'En utilitzar el Servei, l\'Usuari no pot dur a terme les accions següents:'
+                ],
+                bullets: [
+                    'Actes contraris a la llei o a l\'ordre públic i els bons costums.',
+                    'Enviar correu brossa, correu molest, correu publicitari no sol·licitat o vulnerar la normativa sobre l\'enviament de correu electrònic especificat.',
+                    'Enviar virus o altres programes informàtics nocius.',
+                    'Realitzar phishing, suplantacions o qualsevol acte per enganyar tercers.',
+                    'Assetjar, amenaçar, difamar o enviar contingut il·lícit a tercers.',
+                    'Vulnerar els drets de propietat intel·lectual, privacitat o qualsevol altre dret del Servei o de tercers.',
+                    'Saturar excessivament els servidors o la xarxa del Servei.',
+                    'Qualsevol altra acció que el Servei consideri inapropiada.'
+                ]
+            },
+            {
+                title: 'Article 4 (Gestió d\'incompliments i suspensió del compte)',
+                paragraphs: [
+                    'Si el Servei considera que l\'Usuari ha incomplert, o pot incomplir, aquestes Condicions, podrà suspendre o eliminar el compte sense previ avís.',
+                    'En especial, si es vulneren les prohibicions de l\'article 3, el Servei podrà eliminar el compte immediatament a la seva discreció.',
+                    'En eliminar-se el compte, l\'Usuari perd tots els drets d\'ús del Servei i el Servei podrà suprimir de manera permanent totes les dades associades.',
+                    'El Servei no serà responsable dels danys que pateixi l\'Usuari com a resultat de les mesures adoptades d\'acord amb aquest article.'
+                ]
+            },
+            {
+                title: 'Article 5 (Canvis, interrupció i finalització del Servei)',
+                paragraphs: [
+                    'Per motius de manteniment, seguretat, operatius o d\'altres, el Servei podrà modificar, interrompre o finalitzar, totalment o parcialment, el Servei sense previ avís a l\'Usuari.',
+                    'Si es preveu la cessació definitiva del Servei, el Servei procurarà, en principi, avisar-ne amb 60 dies d\'antelació mitjançant un avís al lloc web o un correu a l\'adreça registrada per l\'Usuari.',
+                    'L\'Usuari accepta no exigir cap responsabilitat al Servei ni a tercers per la modificació, interrupció o finalització del Servei.'
+                ]
+            },
+            {
+                title: 'Article 6 (Exempció de responsabilitat)',
+                paragraphs: [
+                    'El Servei es proporciona «tal com és» i «segons disponibilitat», sense cap garantia, expressa o implícita, sobre la seva integritat, exactitud, seguretat o utilitat.',
+                    'Excepte en cas de dol o negligència greu del Servei, aquest no respondrà de cap dany derivat de l\'ús del Servei. Fins i tot si el Servei fos responsable, la indemnització total quedarà limitada a l\'import abonat per l\'Usuari en els darrers tres mesos (o 0 euros si el Servei és gratuït).'
+                ]
+            },
+            {
+                title: 'Article 7 (Llei aplicable i jurisdicció)',
+                paragraphs: [
+                    'Aquestes Condicions es regeixen per la legislació japonesa. Qualsevol disputa relativa al Servei se sotmetrà en primera instància a la jurisdicció exclusiva del Tribunal de Districte de Tòquio.'
+                ]
+            },
+            {
+                title: 'Article 8 (Altres disposicions)',
+                paragraphs: [
+                    'Si alguna disposició d\'aquestes Condicions fos declarada nul·la, la resta de disposicions romandran plenament vigents.'
+                ]
+            }
+        ],
+        lastUpdated: 'Darrera actualització: 27 de setembre de 2025'
+    }
 };
 
 export default ca;

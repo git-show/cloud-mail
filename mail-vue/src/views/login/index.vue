@@ -1,4 +1,5 @@
 <template>
+  <div class="login-page">
   <div id="login-box">
     <LanguageSwitch class="login-lang-switch" :teleported="true" />
     <div id="background-wrap" v-if="!settingStore.settings.background">
@@ -102,6 +103,8 @@
       </div>
     </div>
   </div>
+  <AppFooter class="login-footer" />
+  </div>
 </template>
 
 <script setup>
@@ -121,6 +124,7 @@ import {permsToRouter} from "@/perm/perm.js";
 import {useI18n} from "vue-i18n";
 import reservedWordsUtils from "@/utils/reserved-words-utils.js";
 import LanguageSwitch from "@/components/language-switch/index.vue";
+import AppFooter from "@/components/app-footer/index.vue";
 
 const {t} = useI18n();
 const accountStore = useAccountStore();
@@ -536,10 +540,18 @@ function submitRegister() {
 }
 
 
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #2980b9, #6dd5fa, #fff);
+}
+
 #login-box {
+  flex: 1 1 auto;
+  width: 100%;
   background: linear-gradient(to bottom, #2980b9, #6dd5fa, #fff);
   font: 100% Arial, sans-serif;
-  height: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
