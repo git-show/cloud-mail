@@ -70,6 +70,11 @@ const routes = [
         component: () => import('@/views/privacy/index.vue')
     },
     {
+        path: '/contact',
+        name: 'contact',
+        component: () => import('@/views/contact/index.vue')
+    },
+    {
         path: '/test',
         name: 'test',
         component: () => import('@/views/test/index.vue')
@@ -108,7 +113,7 @@ router.beforeEach((to, from, next) => {
 
     const token = localStorage.getItem('token')
 
-    if (!token && !['login', 'terms', 'privacy'].includes(to.name)) {
+    if (!token && !['login', 'terms', 'privacy', 'contact'].includes(to.name)) {
         return next({name: 'login'})
     }
 

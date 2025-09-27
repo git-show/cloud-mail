@@ -99,6 +99,23 @@ const zh = {
 		"设置查看": "设置查看",
 		"设置修改": "设置修改",
 		'发件重置': '发件重置'
+	},
+	contact: {
+		urgencyLow: '低',
+		urgencyNormal: '正常',
+		urgencyHigh: '高',
+		categoryGeneral: '一般咨询',
+		categoryBug: '问题反馈',
+		categoryFeature: '功能建议',
+		categorySupport: '账号支持',
+		emailLabel: '发送者邮箱',
+		urgencyLabel: '紧急程度',
+		categoryLabel: '咨询类别',
+		needReplyLabel: '需要回复',
+		messageLabel: '咨询内容',
+		yes: '是',
+		no: '否',
+		title: 'cats.cat 联系我们'
 	}
 }
 

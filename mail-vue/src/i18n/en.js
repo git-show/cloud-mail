@@ -308,6 +308,7 @@ const en = {
     footer: {
         terms: 'Terms of Service',
         privacy: 'Privacy Policy',
+        contact: 'Contact',
         copyright: '© {year} cats.cat'
     },
     terms: {
@@ -458,6 +459,51 @@ const en = {
                 ]
             }
         ]
+    },
+    contact: {
+        title: 'Contact cats.cat',
+        intro: 'Fill out the form below to prepare an email for our team. When you submit, your email client will open a draft addressed to info@love.cat.',
+        fields: {
+            email: {
+                label: 'Email',
+                placeholder: 'you@example.com'
+            },
+            urgency: {
+                label: 'Urgency',
+                options: {
+                    low: 'Low',
+                    normal: 'Normal',
+                    high: 'High'
+                }
+            },
+            category: {
+                label: 'Inquiry Type',
+                options: {
+                    general: 'General Inquiry',
+                    bug: 'Bug Report',
+                    feature: 'Feature Request',
+                    support: 'Account Support'
+                }
+            },
+            message: {
+                label: 'Message',
+                placeholder: 'Describe your inquiry (max 200 characters)',
+                helper: 'Up to 200 characters'
+            },
+            reply: 'Reply required'
+        },
+        actions: {
+            submit: 'Compose email'
+        },
+        replyOptions: {
+            yes: 'Yes',
+            no: 'No'
+        },
+        validation: {
+            emailRequired: 'Email is required',
+            messageRequired: 'Message is required',
+            messageTooLong: 'Message must be 200 characters or less'
+        }
     }
 }
 

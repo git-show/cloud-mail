@@ -104,7 +104,7 @@ function selectLanguage(lang) {
   locale.value = lang
   setExtend(lang)
   emit('changed', lang)
-  if (props.toastOnChange) {
+  if (props.toastOnChange && typeof ElMessage !== 'undefined') {
     ElMessage({
       message: t('saveSuccessMsg'),
       type: 'success',
@@ -133,8 +133,7 @@ function selectLanguage(lang) {
   }
 
   &__chip:hover {
-    // box-shadow: 0 6px 18px rgba(91, 141, 255, 0.25);
-    // transform: translateY(-1px);
+    opacity: 0.8;
   }
 
   &__label {

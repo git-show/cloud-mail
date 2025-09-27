@@ -296,7 +296,7 @@ const zh = {
     include: '包含',
     delAllEmailConfirm: '确定要删除吗？',
     s3Configuration: 'S3 配置',
-    
+
     // 保留字相关翻译
     reservedWordError: '此用户名为保留字，不能使用',
     shortAlphanumericError: '3个字符以内的用户名不能使用',
@@ -308,6 +308,7 @@ const zh = {
     footer: {
         terms: '服务条款',
         privacy: '隐私政策',
+        contact: '联系我们',
         copyright: '© {year} cats.cat'
     },
     terms: {
@@ -458,7 +459,52 @@ const zh = {
                 ]
             }
         ]
+    },
+    contact: {
+        title: 'cats.cat 联系我们',
+        intro: '填写以下表单即可生成发往 info@love.cat 的邮件草稿。提交后会打开您的邮件客户端。',
+        fields: {
+            email: {
+                label: '邮箱',
+                placeholder: 'you@example.com'
+            },
+            urgency: {
+                label: '紧急程度',
+                options: {
+                    low: '低',
+                    normal: '正常',
+                    high: '高'
+                }
+            },
+            category: {
+                label: '咨询类别',
+                options: {
+                    general: '一般咨询',
+                    bug: '问题反馈',
+                    feature: '功能建议',
+                    support: '账号支持'
+                }
+            },
+            message: {
+                label: '咨询内容',
+                placeholder: '请在200字以内描述',
+                helper: '最多可输入200个字'
+            },
+            reply: '需要回复'
+        },
+        actions: {
+            submit: '撰写邮件'
+        },
+        replyOptions: {
+            yes: '是',
+            no: '否'
+        },
+        validation: {
+            emailRequired: '邮箱不能为空',
+            messageRequired: '咨询内容不能为空',
+            messageTooLong: '请输入不超过200个字'
+        }
     }
-
 }
+
 export default zh

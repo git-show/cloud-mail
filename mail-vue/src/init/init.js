@@ -17,18 +17,28 @@ export async function init() {
     const token = localStorage.getItem('token');
     if (!settingStore.lang) {
         const supportedLanguages = ['zh', 'ja', 'ca', 'en'];
-        const nav = typeof navigator !== 'undefined' ? navigator : null;
-        const candidateLanguages = nav && Array.isArray(nav.languages) && nav.languages.length
-            ? nav.languages
-            : nav?.language
-                ? [nav.language]
-                : [];
+        
+        // まず、古いLocalStorageの'lang'キーから移行を試行
+        const oldLangSetting = localStorage.getItem('lang');
+        if (oldLangSetting && supportedLanguages.includes(oldLangSetting)) {
+            settingStore.lang = oldLangSetting;
+            // 移行完了後、古いキーを削除
+            localStorage.removeItem('lang');
+        } else {
+            // LocalStorageにない場合、ブラウザ言語から検出
+            const nav = typeof navigator !== 'undefined' ? navigator : null;
+            const candidateLanguages = nav && Array.isArray(nav.languages) && nav.languages.length
+                ? nav.languages
+                : nav?.language
+                    ? [nav.language]
+                    : [];
 
-        const normalized = candidateLanguages
-            .map(lang => (lang || '').toLowerCase().split(/[,_-]/)[0])
-            .find(lang => supportedLanguages.includes(lang));
+            const normalized = candidateLanguages
+                .map(lang => (lang || '').toLowerCase().split(/[,_-]/)[0])
+                .find(lang => supportedLanguages.includes(lang));
 
-        settingStore.lang = normalized || 'en';
+            settingStore.lang = normalized || 'en';
+        }
     }
 
     i18n.global.locale.value = settingStore.lang

@@ -102,6 +102,23 @@ const ca = {
 		"设置查看": "Veure configuració",
 		"设置修改": "Canviar configuració",
 		"发件重置": "Restablir comptador d'enviament"
+	},
+	contact: {
+		urgencyLow: 'Baixa',
+		urgencyNormal: 'Normal',
+		urgencyHigh: 'Alta',
+		categoryGeneral: 'Consulta general',
+		categoryBug: 'Informe d\'error',
+		categoryFeature: 'Suggeriment de funcions',
+		categorySupport: 'Suport de compte',
+		emailLabel: 'Correu del remitent',
+		urgencyLabel: 'Nivell d\'urgència',
+		categoryLabel: 'Tipus de consulta',
+		needReplyLabel: 'Necessito resposta',
+		messageLabel: 'Missatge',
+		yes: 'Sí',
+		no: 'No',
+		title: 'cats.cat Contacte'
 	}
 };
 

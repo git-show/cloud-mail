@@ -99,6 +99,23 @@ const en = {
 		"设置查看": "View Settings",
 		"设置修改": "Change Settings",
 		"发件重置": "Reset Send Count"
+	},
+	contact: {
+		urgencyLow: 'Low',
+		urgencyNormal: 'Normal',
+		urgencyHigh: 'High',
+		categoryGeneral: 'General Inquiry',
+		categoryBug: 'Bug Report',
+		categoryFeature: 'Feature Request',
+		categorySupport: 'Account Support',
+		emailLabel: 'Sender Email',
+		urgencyLabel: 'Urgency',
+		categoryLabel: 'Inquiry Type',
+		needReplyLabel: 'Reply Required',
+		messageLabel: 'Message',
+		yes: 'Yes',
+		no: 'No',
+		title: 'cats.cat Contact Inquiry'
 	}
 };
 

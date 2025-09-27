@@ -8,6 +8,10 @@
       <router-link class="app-footer__link" to="/privacy">
         {{ $t('footer.privacy') }}
       </router-link>
+      <span class="app-footer__divider">•</span>
+      <router-link class="app-footer__link" to="/contact">
+        {{ $t('footer.contact') }}
+      </router-link>
     </nav>
     <span class="app-footer__text">{{ copyrightText }}</span>
   </footer>

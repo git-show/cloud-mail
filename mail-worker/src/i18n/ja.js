@@ -99,6 +99,23 @@ const ja = {
 		"设置查看": "設定閲覧",
 		"设置修改": "設定変更",
 		'发件重置': '送信リセット'
+	},
+	contact: {
+		urgencyLow: '低',
+		urgencyNormal: '標準',
+		urgencyHigh: '高',
+		categoryGeneral: '一般的なお問い合わせ',
+		categoryBug: '不具合報告',
+		categoryFeature: '機能要望',
+		categorySupport: 'アカウントサポート',
+		emailLabel: '送信者メールアドレス',
+		urgencyLabel: '緊急度',
+		categoryLabel: '問い合わせ項目',
+		needReplyLabel: '返信が必要',
+		messageLabel: 'お問い合わせ内容',
+		yes: 'はい',
+		no: 'いいえ',
+		title: 'cats.cat お問い合わせ'
 	}
 }
 

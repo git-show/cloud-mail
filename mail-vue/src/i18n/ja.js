@@ -308,6 +308,7 @@ const ja = {
     footer: {
         terms: '利用規約',
         privacy: 'プライバシーポリシー',
+        contact: 'お問い合わせ',
         copyright: '© {year} cats.cat'
     },
     terms: {
@@ -458,6 +459,51 @@ const ja = {
                 ]
             }
         ]
+    },
+    contact: {
+        title: 'cats.cat お問い合わせ',
+        intro: '以下のフォームに必要事項を入力すると、info@love.cat 宛てのメール下書きが開きます。',
+        fields: {
+            email: {
+                label: 'メールアドレス',
+                placeholder: 'you@example.com'
+            },
+            urgency: {
+                label: '緊急度',
+                options: {
+                    low: '低',
+                    normal: '標準',
+                    high: '高'
+                }
+            },
+            category: {
+                label: 'お問い合わせ項目',
+                options: {
+                    general: '一般的なお問い合わせ',
+                    bug: '不具合報告',
+                    feature: '機能要望',
+                    support: 'アカウントサポート'
+                }
+            },
+            message: {
+                label: 'お問い合わせ内容',
+                placeholder: '200文字以内でご記入ください',
+                helper: '最大200文字まで入力できます'
+            },
+            reply: '返信が必要'
+        },
+        actions: {
+            submit: 'メールを作成する'
+        },
+        replyOptions: {
+            yes: 'はい',
+            no: 'いいえ'
+        },
+        validation: {
+            emailRequired: 'メールアドレスを入力してください',
+            messageRequired: 'お問い合わせ内容を入力してください',
+            messageTooLong: '200文字以内で入力してください'
+        }
     }
 
 }

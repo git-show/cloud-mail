@@ -18,4 +18,5 @@ import '../api/init-api'
 import '../api/analysis-api'
 import '../api/reg-key-api'
 import '../api/public-api'
+import '../api/contact-api'
 export default app;
