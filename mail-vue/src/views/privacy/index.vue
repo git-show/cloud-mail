@@ -1,41 +1,40 @@
 <template>
-  <div class="terms-page">
-    <header class="terms-page__header">
-      <router-link class="terms-page__back" :to="homeRoute" aria-label="Back">
-        <Icon icon="mingcute:left-line" class="terms-page__back-icon" width="24" height="24" />
+  <div class="privacy-page">
+    <header class="privacy-page__header">
+      <router-link class="privacy-page__back" :to="homeRoute" aria-label="Back">
+        <Icon icon="mingcute:left-line" class="privacy-page__back-icon" width="24" height="24" />
       </router-link>
-      <LanguageSwitch class="terms-page__language" :teleported="false" placement="bottom-end" />
+      <LanguageSwitch class="privacy-page__language" :teleported="false" placement="bottom-end" />
     </header>
-    <main class="terms-page__body">
-      <h1 class="terms-page__title">{{ termsContent.title }}</h1>
-      <p v-if="termsContent.effectiveDate" class="terms-page__meta">{{ termsContent.effectiveDate }}</p>
-      <p v-if="termsContent.lastUpdated" class="terms-page__meta">{{ termsContent.lastUpdated }}</p>
-      <p class="terms-page__intro">{{ termsContent.intro }}</p>
+    <main class="privacy-page__body">
+      <h1 class="privacy-page__title">{{ privacyContent.title }}</h1>
+      <p v-if="privacyContent.effectiveDate" class="privacy-page__meta">{{ privacyContent.effectiveDate }}</p>
+      <p class="privacy-page__intro">{{ privacyContent.intro }}</p>
       <section
-        v-for="section in termsContent.sections"
+        v-for="section in privacyContent.sections"
         :key="section.title"
-        class="terms-page__section"
+        class="privacy-page__section"
       >
-        <h2 class="terms-page__section-title">{{ section.title }}</h2>
+        <h2 class="privacy-page__section-title">{{ section.title }}</h2>
         <p
           v-for="(paragraph, index) in section.paragraphs"
           :key="`${section.title}-p-${index}`"
-          class="terms-page__paragraph"
+          class="privacy-page__paragraph"
         >
           {{ paragraph }}
         </p>
-        <ul v-if="section.bullets" class="terms-page__list">
+        <ul v-if="section.bullets" class="privacy-page__list">
           <li
             v-for="(bullet, index) in section.bullets"
             :key="`${section.title}-b-${index}`"
-            class="terms-page__list-item"
+            class="privacy-page__list-item"
           >
             {{ bullet }}
           </li>
         </ul>
       </section>
     </main>
-    <AppFooter class="terms-page__footer" />
+    <AppFooter class="privacy-page__footer" />
   </div>
 </template>
 
@@ -48,14 +47,13 @@ import AppFooter from '@/components/app-footer/index.vue'
 
 const { tm } = useI18n()
 
-const termsContent = computed(() => {
-  const content = tm('terms') || {}
+const privacyContent = computed(() => {
+  const content = tm('privacy') || {}
   return {
     title: content.title || '',
     intro: content.intro || '',
     sections: content.sections || [],
-    effectiveDate: content.effectiveDate || '',
-    lastUpdated: content.lastUpdated || ''
+    effectiveDate: content.effectiveDate || ''
   }
 })
 
@@ -63,7 +61,7 @@ const homeRoute = computed(() => (localStorage.getItem('token') ? '/inbox' : '/l
 </script>
 
 <style scoped lang="scss">
-.terms-page {
+.privacy-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -132,7 +130,13 @@ const homeRoute = computed(() => (localStorage.getItem('token') ? '/inbox' : '/l
   &__title {
     font-size: 28px;
     font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  &__meta {
     margin-bottom: 16px;
+    font-size: 14px;
+    color: var(--el-text-color-secondary);
   }
 
   &__intro,
@@ -158,13 +162,6 @@ const homeRoute = computed(() => (localStorage.getItem('token') ? '/inbox' : '/l
   &__list {
     list-style: disc;
     padding-left: 24px;
-  }
-
-  &__meta {
-    margin-top: 8px;
-    margin-bottom: 0;
-    font-size: 14px;
-    color: var(--el-text-color-secondary);
   }
 
   &__footer {

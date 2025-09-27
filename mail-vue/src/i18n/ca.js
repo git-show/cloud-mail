@@ -279,6 +279,7 @@ const ca = {
 
     footer: {
         terms: 'Condicions del servei',
+        privacy: 'Política de privadesa',
         copyright: '© {year} cats.cat'
     },
     terms: {
@@ -352,6 +353,83 @@ const ca = {
             }
         ],
         lastUpdated: 'Darrera actualització: 27 de setembre de 2025'
+    },
+    privacy: {
+        title: 'Política de privadesa de cats.cat',
+        effectiveDate: 'Data d\'entrada en vigor: 27 de setembre de 2025',
+        intro: 'Aquesta Política de privadesa (d\'ara endavant, «Política») descriu com cats.cat (d\'ara endavant, el «Servei») tracta la informació personal quan presta el servei de correu electrònic. La Política s\'aplica sempre que els usuaris accedeixen o utilitzen el Servei.',
+        sections: [
+            {
+                title: 'Article 1 (Introducció i abast)',
+                paragraphs: [
+                    'Aquesta Política regula la manera com el Servei recopila i gestiona la informació personal dels usuaris. En utilitzar el Servei, l\'Usuari accepta l\'aplicació d\'aquesta Política.'
+                ]
+            },
+            {
+                title: 'Article 2 (Informació que recopilem)',
+                paragraphs: [
+                    'Per oferir el Servei, recopilem la informació següent:'
+                ],
+                bullets: [
+                    'Informació facilitada directament pels usuaris: dades de registre del compte com ara nom, adreça de correu electrònic, contrasenya i qualsevol informació de perfil opcional que configuri l\'Usuari.',
+                    'Informació obtinguda automàticament durant l\'ús: dades de registre (adreça IP, tipus de navegador, data i hora d\'accés, funcions utilitzades) i informació del dispositiu (tipus de dispositiu, sistema operatiu i identificadors únics).',
+                    'Informació recopilada mitjançant cookies i tecnologies similars per millorar la comoditat i analitzar l\'ús del Servei.',
+                    'Informació relacionada amb el contingut del correu: es processa automàticament per permetre funcions bàsiques com l\'enviament i recepció de correu, el filtratge de correu brossa i l\'anàlisi de virus. Aquestes dades no s\'utilitzen per a publicitat, perfilatge ni altres fins aliens al Servei, ni són revisades manualment.'
+                ]
+            },
+            {
+                title: 'Article 3 (Finalitats d\'ús)',
+                paragraphs: [
+                    'La informació personal recopilada s\'utilitza per a les finalitats següents:'
+                ],
+                bullets: [
+                    'Proporcionar, operar i mantenir el Servei.',
+                    'Respondre consultes dels usuaris i realitzar verificacions d\'identitat.',
+                    'Enviar comunicacions sobre actualitzacions, manteniment i avisos importants del Servei.',
+                    'Prevenir i gestionar incompliments de les Condicions del Servei o usos fraudulents.',
+                    'Analitzar l\'ús del Servei per millorar-lo i desenvolupar noves funcionalitats.',
+                    'Proporcionar informació o campanyes de màrqueting sobre el Servei o serveis associats (l\'Usuari pot donar-se de baixa en qualsevol moment).'
+                ]
+            },
+            {
+                title: 'Article 4 (Cessió de dades personals a tercers)',
+                paragraphs: [
+                    'El Servei no facilita dades personals a tercers sense el consentiment previ de l\'Usuari, excepte en els casos següents:'
+                ],
+                bullets: [
+                    'Quan ho exigeixi la legislació aplicable.',
+                    'Quan sigui necessari per protegir la vida, la integritat física o els béns, i sigui difícil obtenir el consentiment de l\'interessat.',
+                    'Quan es delegui el tractament de dades a col·laboradors de confiança dins l\'abast necessari per assolir les finalitats indicades (sota la supervisió adequada del Servei).',
+                    'En casos de transmissió empresarial, com ara fusions o adquisicions, en què les dades personals es transfereixin al successor.',
+                    'El Servei no ven dades personals dels usuaris a tercers.'
+                ]
+            },
+            {
+                title: 'Article 5 (Mesures de seguretat)',
+                paragraphs: [
+                    'El Servei aplica mesures necessàries i adequades per prevenir la filtració, pèrdua o deteriorament de les dades personals, incloent-hi xifrat de comunicacions (SSL/TLS), controls d\'accés i formació continuada del personal.'
+                ]
+            },
+            {
+                title: 'Article 6 (Drets dels usuaris)',
+                paragraphs: [
+                    'Els usuaris poden sol·licitar l\'accés, rectificació, ampliació, supressió, suspensió d\'ús o eliminació de la seva informació personal. Per exercir aquests drets, cal contactar amb el punt d\'informació indicat a l\'Article 8. Després de verificar la identitat, el Servei respondrà sense demora innecessària d\'acord amb la legislació aplicable.'
+                ]
+            },
+            {
+                title: 'Article 7 (Modificacions d\'aquesta Política)',
+                paragraphs: [
+                    'El Servei pot modificar aquesta Política quan sigui necessari. Les modificacions importants es notificaran mitjançant el lloc web o per correu electrònic.'
+                ]
+            },
+            {
+                title: 'Article 8 (Contacte)',
+                paragraphs: [
+                    'Nom de l\'operador: cats.cat',
+                    'Correu electrònic de contacte: info@love.cat'
+                ]
+            }
+        ]
     }
 };
 

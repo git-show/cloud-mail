@@ -307,6 +307,7 @@ const en = {
 
     footer: {
         terms: 'Terms of Service',
+        privacy: 'Privacy Policy',
         copyright: '© {year} cats.cat'
     },
     terms: {
@@ -380,6 +381,83 @@ const en = {
             }
         ],
         lastUpdated: 'Last updated: 27 September 2025'
+    },
+    privacy: {
+        title: 'cats.cat Privacy Policy',
+        effectiveDate: 'Effective date: 27 September 2025',
+        intro: 'This Privacy Policy (hereinafter, “Policy”) describes how cats.cat (hereinafter, the “Service”) handles personal information when providing its email service. The Policy applies whenever users access or use the Service.',
+        sections: [
+            {
+                title: 'Article 1 (Introduction and Scope)',
+                paragraphs: [
+                    'This Policy governs the handling of personal information collected through the Service. By using the Service, users agree to the application of this Policy.'
+                ]
+            },
+            {
+                title: 'Article 2 (Information We Collect)',
+                paragraphs: [
+                    'The Service collects the following information to operate and improve its features:'
+                ],
+                bullets: [
+                    'Information provided directly by users: account registration details such as name, email address, password, and any optional profile information you configure.',
+                    'Information acquired automatically during use: log data (including IP address, browser type, access timestamps, and features used) and device information (such as device type, operating system, and unique identifiers).',
+                    'Information obtained through cookies and similar technologies used to enhance convenience and analyze Service usage.',
+                    'Email content information processed mechanically to enable core features such as sending and receiving email, spam filtering, and virus scanning. These data are never used for advertising, profiling, or any unrelated purposes, nor reviewed manually by staff.'
+                ]
+            },
+            {
+                title: 'Article 3 (Purposes of Use)',
+                paragraphs: [
+                    'The Service uses collected personal information for the following purposes:'
+                ],
+                bullets: [
+                    'Providing, operating, and maintaining the Service.',
+                    'Responding to user inquiries and performing identity verification.',
+                    'Communicating updates, maintenance notices, and other important information about the Service.',
+                    'Preventing and responding to violations of the Terms of Service or fraudulent use.',
+                    'Analyzing usage trends to improve the Service and develop new features.',
+                    'Providing information or marketing communications about the Service or partner offerings (users may opt out at any time).'
+                ]
+            },
+            {
+                title: 'Article 4 (Provision of Personal Data to Third Parties)',
+                paragraphs: [
+                    'The Service does not disclose personal data to third parties without prior user consent, except in the following cases:'
+                ],
+                bullets: [
+                    'When required by law.',
+                    'When necessary to protect life, body, or property and obtaining consent is difficult.',
+                    'When outsourcing processing to trusted partners within the scope necessary to achieve the stated purposes, in which case the Service provides appropriate supervision.',
+                    'In the event of a business transfer, such as a merger or acquisition, where personal data are handed over.',
+                    'The Service never sells users’ personal data to third parties.'
+                ]
+            },
+            {
+                title: 'Article 5 (Security Measures)',
+                paragraphs: [
+                    'The Service implements necessary and appropriate safeguards to prevent leakage, loss, or damage of personal data. Measures include encrypted communications (SSL/TLS), access controls, and regular employee training.'
+                ]
+            },
+            {
+                title: 'Article 6 (User Rights)',
+                paragraphs: [
+                    'Users may request disclosure, correction, addition, deletion, suspension of use, or erasure of their personal information. Please contact the inquiry desk specified in Article 8, and after verifying identity the Service will respond without undue delay in accordance with applicable laws.'
+                ]
+            },
+            {
+                title: 'Article 7 (Changes to This Policy)',
+                paragraphs: [
+                    'The Service may amend this Policy as necessary. Material changes will be announced on the website or by email notification.'
+                ]
+            },
+            {
+                title: 'Article 8 (Contact Information)',
+                paragraphs: [
+                    'Service operator: cats.cat',
+                    'Contact email: info@love.cat'
+                ]
+            }
+        ]
     }
 }
 

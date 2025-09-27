@@ -1,8 +1,14 @@
 <template>
   <footer class="app-footer">
-    <router-link class="app-footer__link" to="/terms">
-      {{ $t('footer.terms') }}
-    </router-link>
+    <nav class="app-footer__links">
+      <router-link class="app-footer__link" to="/terms">
+        {{ $t('footer.terms') }}
+      </router-link>
+      <span class="app-footer__divider">•</span>
+      <router-link class="app-footer__link" to="/privacy">
+        {{ $t('footer.privacy') }}
+      </router-link>
+    </nav>
     <span class="app-footer__text">{{ copyrightText }}</span>
   </footer>
 </template>
@@ -20,14 +26,16 @@ const copyrightText = computed(() => {
 </script>
 
 <style scoped lang="scss">
+
 .app-footer {
   position: fixed;
   left: 16px;
   bottom: 16px;
   display: inline-flex;
   flex-direction: column;
-  gap: 6px;
-  padding: 12px 16px;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 18px;
   background: rgba(255, 255, 255, 0.82)!important;
   backdrop-filter: blur(10px);
   border-radius: 12px;
@@ -48,8 +56,14 @@ const copyrightText = computed(() => {
     font-size: 12px;
   }
 
+  &__links {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   &__link {
-    color: #000;
+    color: var(--el-text-color-primary);
     font-weight: 600;
     text-decoration: none;
     transition: color 0.2s ease;
@@ -57,6 +71,10 @@ const copyrightText = computed(() => {
     &:hover {
       color: var(--el-color-primary-light-3);
     }
+  }
+
+  &__divider {
+    color: var(--el-text-color-disabled);
   }
 
   &__text {
