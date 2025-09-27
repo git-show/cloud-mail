@@ -78,6 +78,10 @@ const languageOptions = computed(() => [
     value: 'en',
     label: t('languageEnglish')
   },
+ {
+    value: 'ca',
+    label: t('languageCatalan')
+  },
   {
     value: 'zh',
     label: t('languageChinese')
@@ -85,10 +89,6 @@ const languageOptions = computed(() => [
   {
     value: 'ja',
     label: t('languageJapanese')
-  },
-  {
-    value: 'ca',
-    label: t('languageCatalan')
   }
 ])
 
@@ -123,18 +123,18 @@ function selectLanguage(lang) {
     gap: 6px;
     padding: 4px 12px;
     border-radius: 999px;
-    background: linear-gradient(135deg, rgba(77, 171, 255, 0.18), rgba(91, 141, 255, 0.38));
-    border: 1px solid rgba(120, 165, 255, 0.35);
-    backdrop-filter: blur(6px);
-    transition: all 0.25s ease;
+    // background: linear-gradient(135deg, rgba(77, 171, 255, 0.18), rgba(91, 141, 255, 0.38));
+    // border: 1px solid rgba(120, 165, 255, 0.35);
+    // backdrop-filter: blur(6px);
+    // transition: all 0.25s ease;
     color: var(--el-text-color-primary);
     cursor: pointer;
-    min-width: 110px;
+    // min-width: 110px;
   }
 
   &__chip:hover {
-    box-shadow: 0 6px 18px rgba(91, 141, 255, 0.25);
-    transform: translateY(-1px);
+    // box-shadow: 0 6px 18px rgba(91, 141, 255, 0.25);
+    // transform: translateY(-1px);
   }
 
   &__label {
@@ -162,7 +162,7 @@ function selectLanguage(lang) {
   .el-dropdown-menu {
     padding: 6px;
     border-radius: 12px;
-    min-width: 160px;
+    // min-width: 160px;
   }
 
   .el-dropdown-menu__item {
