@@ -1,3 +1,4 @@
+import './polyfills.js';
 import { S3Client, PutObjectCommand, DeleteObjectsCommand } from "@aws-sdk/client-s3";
 import settingService from './setting-service';
 import domainUtils from '../utils/domain-uitls';

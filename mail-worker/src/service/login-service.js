@@ -19,6 +19,7 @@ import dayjs from 'dayjs';
 import { toUtc } from '../utils/date-uitil';
 import { t } from '../i18n/i18n.js';
 import verifyRecordService from './verify-record-service';
+import reservedWordsUtils from '../utils/reserved-words-utils';
 
 const loginService = {
 
@@ -51,6 +52,16 @@ const loginService = {
 
 		if (!c.env.domain.includes(emailUtils.getDomain(email))) {
 			throw new BizError(t('notEmailDomain'));
+		}
+
+		// Validate reserved words
+		const reservedWordsValidation = reservedWordsUtils.validateEmailUsername(email);
+		if (!reservedWordsValidation.isValid) {
+			if (reservedWordsValidation.reason === 'reservedWord') {
+				throw new BizError(t('reservedWordError'));
+			} else if (reservedWordsValidation.reason === 'shortAlphanumericError') {
+				throw new BizError(t('shortAlphanumericError'));
+			}
 		}
 
 		let type = null;

@@ -16,6 +16,7 @@
       <div v-else class="dark-icon icon-item" @click="openDark($event)">
         <Icon icon="solar:moon-linear"/>
       </div>
+      <LanguageSwitch class="header-lang-switch" :teleported="false" />
       <div class="notice icon-item" @click="openNotice">
         <Icon icon="streamline-plump:announcement-megaphone"/>
       </div>
@@ -77,6 +78,7 @@ import router from "@/router";
 import hanburger from '@/components/hamburger/index.vue'
 import {logout} from "@/request/login.js";
 import {Icon} from "@iconify/vue";
+import LanguageSwitch from "@/components/language-switch/index.vue";
 import {useUiStore} from "@/store/ui.js";
 import {useUserStore} from "@/store/user.js";
 import {useRoute} from "vue-router";
@@ -84,7 +86,6 @@ import {computed, ref} from "vue";
 import {useSettingStore} from "@/store/setting.js";
 import {hasPerm} from "@/perm/perm.js"
 import {useI18n} from "vue-i18n";
-import {setExtend} from "@/utils/day.js"
 
 const {t} = useI18n();
 const route = useRoute();
@@ -172,11 +173,6 @@ async function copyEmail(email) {
       plain: true,
     })
   }
-}
-
-function changeLang(lang) {
-  setExtend(lang === 'en' ? 'en' : 'zh-cn')
-  settingStore.lang = lang
 }
 
 function openNotice() {
@@ -438,6 +434,12 @@ function formatName(email) {
     font-size: 24px;
   }
 
+  .header-lang-switch {
+    align-self: center;
+    :deep(.language-switch__chip) {
+      min-width: 110px;
+    }
+  }
   .avatar {
     display: flex;
     align-items: center;

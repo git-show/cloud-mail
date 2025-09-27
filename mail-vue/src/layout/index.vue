@@ -15,6 +15,7 @@
             <Header />
         </el-header>
         <Main />
+        <AppFooter />
       </el-main>
     </el-container>
   </el-container>
@@ -25,6 +26,7 @@
 import Aside from '@/layout/aside/index.vue'
 import Header from '@/layout/header/index.vue'
 import Main from '@/layout/main/index.vue'
+import AppFooter from '@/components/app-footer/index.vue'
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import {useUiStore} from "@/store/ui.js";
 import writer from '@/layout/write/index.vue'
@@ -91,6 +93,8 @@ onBeforeUnmount(() => {
 
 .main-container {
   min-height: 100%;
+  display: flex;
+  flex-direction: column;
   background: var(--el-bg-color);
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
@@ -98,12 +102,20 @@ onBeforeUnmount(() => {
 
 .el-main {
   padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 .el-header {
   background: var(--el-bg-color);
   border-bottom: solid 1px var(--el-border-color);
   padding: 0 0 0 0;
+}
+
+.el-main :deep(.main-box-show),
+.el-main :deep(.main-box-hide) {
+  flex: 1 1 auto;
 }
 
 .overlay-show {

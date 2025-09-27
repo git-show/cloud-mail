@@ -16,9 +16,19 @@ export async function init() {
 
     const token = localStorage.getItem('token');
     if (!settingStore.lang) {
-        let lang = navigator.language.split('-')[0]
-        lang = lang === 'zh' ? lang : 'en'
-        settingStore.lang = lang
+        const supportedLanguages = ['zh', 'ja', 'ca', 'en'];
+        const nav = typeof navigator !== 'undefined' ? navigator : null;
+        const candidateLanguages = nav && Array.isArray(nav.languages) && nav.languages.length
+            ? nav.languages
+            : nav?.language
+                ? [nav.language]
+                : [];
+
+        const normalized = candidateLanguages
+            .map(lang => (lang || '').toLowerCase().split(/[,_-]/)[0])
+            .find(lang => supportedLanguages.includes(lang));
+
+        settingStore.lang = normalized || 'en';
     }
 
     i18n.global.locale.value = settingStore.lang

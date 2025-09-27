@@ -29,6 +29,12 @@
           <el-button type="primary" @click="pwdShow = true">{{$t('changePwdBtn')}}</el-button>
         </div>
       </div>
+      <div class="item">
+        <div>{{$t('language')}}</div>
+        <div class="language-action">
+          <LanguageSwitch class="settings-lang-switch" toast-on-change />
+        </div>
+      </div>
     </div>
     <div class="del-email" v-perm="'my:delete'">
       <div class="title">{{$t('deleteUser')}}</div>
@@ -56,10 +62,13 @@ import router from "@/router/index.js";
 import {accountSetName} from "@/request/account.js";
 import {useAccountStore} from "@/store/account.js";
 import {useI18n} from "vue-i18n";
+import {useSettingStore} from "@/store/setting.js";
+import LanguageSwitch from "@/components/language-switch/index.vue";
 
 const { t } = useI18n()
 const accountStore = useAccountStore()
 const userStore = useUserStore();
+const settingStore = useSettingStore();
 const setPwdLoading = ref(false)
 const setNameShow = ref(false)
 const accountName = ref(null)
@@ -254,6 +263,17 @@ function submitPwd() {
     display: flex;
     flex-direction: column;
     gap: 20px;
+  }
+}
+
+.language-action {
+  display: flex;
+  align-items: center;
+}
+
+.settings-lang-switch {
+  :deep(.language-switch__chip) {
+    min-width: 140px;
   }
 }
 </style>

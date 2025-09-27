@@ -1,5 +1,7 @@
 <template>
+  <div class="login-page">
   <div id="login-box">
+    <LanguageSwitch class="login-lang-switch" :teleported="true" />
     <div id="background-wrap" v-if="!settingStore.settings.background">
       <div class="x1 cloud"></div>
       <div class="x2 cloud"></div>
@@ -101,6 +103,8 @@
       </div>
     </div>
   </div>
+  <AppFooter class="login-footer" />
+  </div>
 </template>
 
 <script setup>
@@ -118,6 +122,9 @@ import {cvtR2Url} from "@/utils/convert.js";
 import {loginUserInfo} from "@/request/my.js";
 import {permsToRouter} from "@/perm/perm.js";
 import {useI18n} from "vue-i18n";
+import reservedWordsUtils from "@/utils/reserved-words-utils.js";
+import LanguageSwitch from "@/components/language-switch/index.vue";
+import AppFooter from "@/components/app-footer/index.vue";
 
 const {t} = useI18n();
 const accountStore = useAccountStore();
@@ -264,6 +271,19 @@ function submitRegister() {
       plain: true,
     })
     return
+  }
+
+  // Validate reserved words
+  const reservedValidation = reservedWordsUtils.validateUsername(registerForm.email);
+  if (!reservedValidation.isValid) {
+    if (reservedValidation.reason === 'reservedWord') {
+      ElMessage({
+        message: t('reservedWordError'),
+        type: 'error',
+        plain: true,
+      })
+      return
+    }
   }
 
   if (!registerForm.password) {
@@ -520,15 +540,41 @@ function submitRegister() {
 }
 
 
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(to bottom, #2980b9, #6dd5fa, #fff);
+}
+
 #login-box {
+  flex: 1 1 auto;
+  width: 100%;
   background: linear-gradient(to bottom, #2980b9, #6dd5fa, #fff);
   font: 100% Arial, sans-serif;
-  height: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   display: grid;
   grid-template-columns: 1fr;
+  position: relative;
+}
+
+
+.login-lang-switch {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  z-index: 20;
+
+  @media (max-width: 767px) {
+    top: 18px;
+    right: 18px;
+  }
+
+  :deep(.language-switch__chip) {
+    backdrop-filter: blur(10px);
+  }
 }
 
 

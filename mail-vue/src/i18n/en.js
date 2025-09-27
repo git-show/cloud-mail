@@ -244,6 +244,10 @@ const en = {
     reqFailErrorMsg: 'Request failed. Try again later',
     message: 'Message',
     language: 'Language',
+    languageEnglish: 'English',
+    languageChinese: '中文',
+    languageJapanese: '日本語',
+    languageCatalan: 'Català',
     totalUserAccount: '{msg}',
     sendBanned: 'Banned',
     wrote: 'wrote',
@@ -291,7 +295,92 @@ const en = {
     clear: 'Clear',
     include: 'Include',
     delAllEmailConfirm: 'Do you really want to delete it?',
-    s3Configuration: 'S3 Configuration'
+    s3Configuration: 'S3 Configuration',
+    
+    // Reserved words related translations
+    reservedWordError: 'This username is a reserved word and cannot be used',
+    shortAlphanumericError: 'Usernames with 3 characters or less cannot be used',
+    reservedWords: 'Reserved Words',
+    reservedWordsDesc: 'List of reserved words that cannot be used as usernames',
+    customReservedWords: 'Custom Reserved Words',
+    customReservedWordsDesc: 'Add custom reserved words, separated by commas',
+
+    footer: {
+        terms: 'Terms of Service',
+        copyright: '© {year} cats.cat'
+    },
+    terms: {
+        title: 'cats.cat Terms of Service',
+        intro: 'These Terms of Service (hereinafter, “Terms”) set forth the conditions for using the email service provided by cats.cat (hereinafter, the “Service”). By creating an account or using the Service, you agree to these Terms.',
+        sections: [
+            {
+                title: 'Article 1 (Account)',
+                paragraphs: [
+                    'Users must provide truthful and accurate information when registering an account.',
+                    'Users are responsible for strictly managing their account password and must not allow any third party to use it. All actions taken using the password will be deemed actions of the applicable user.'
+                ]
+            },
+            {
+                title: 'Article 2 (Intellectual Property Rights)',
+                paragraphs: [
+                    'All copyrights, trademarks, and other intellectual property rights related to the Service belong to the Service or to the licensors that provide such rights to the Service.'
+                ]
+            },
+            {
+                title: 'Article 3 (Prohibited Conduct)',
+                paragraphs: [
+                    'When using the Service, users must not engage in any of the following acts:'
+                ],
+                bullets: [
+                    'Acts that violate laws or public order and morals.',
+                    'Sending spam, junk mail, unsolicited advertising mail, or otherwise violating laws regarding the proper transmission of specified electronic mail.',
+                    'Sending viruses or other harmful computer programs.',
+                    'Phishing, impersonation, or other acts intended to deceive third parties.',
+                    'Harassment, threats, defamation, or sending other unlawful content to third parties.',
+                    'Infringing the intellectual property rights, privacy rights, or other rights of the Service or third parties.',
+                    'Placing excessive load on the Service’s servers or networks.',
+                    'Any other acts the Service deems inappropriate.'
+                ]
+            },
+            {
+                title: 'Article 4 (Handling of Violations and Account Suspension)',
+                paragraphs: [
+                    'If the Service determines that a user has violated or is likely to violate these Terms, the Service may suspend or delete the user’s account without prior notice.',
+                    'If a user violates the prohibited conduct set out in Article 3, the Service may, at its sole discretion, delete the user’s account immediately.',
+                    'If an account is deleted, the user will lose all rights to use the Service, and the Service may permanently delete all data related to the account.',
+                    'The Service bears no liability for any damages incurred by the user as a result of measures taken under this Article.'
+                ]
+            },
+            {
+                title: 'Article 5 (Changes, Suspension, and Termination of the Service)',
+                paragraphs: [
+                    'For maintenance, security, business reasons, or other reasons, the Service may change, suspend, or terminate all or part of the Service at any time without notice to users.',
+                    'If the Service plans to discontinue the Service permanently, it will, in principle, make reasonable efforts to announce the discontinuation on its website or notify users via the email addresses registered to their accounts at least 60 days before the discontinuation date.',
+                    'Users agree not to hold the Service or any third party liable for any changes, suspension, or termination of the Service.'
+                ]
+            },
+            {
+                title: 'Article 6 (Disclaimer)',
+                paragraphs: [
+                    'The Service is provided on an “as-is” and “as-available” basis, and the Service makes no warranties, express or implied, regarding its completeness, accuracy, safety, or usefulness.',
+                    'Except in cases of willful misconduct or gross negligence by the Service, the Service shall not be liable for any damages incurred by users arising from the use of the Service. Even if the Service is liable, the total liability shall in all cases be limited to the total amount of fees paid by the user to the Service in the past three months (or 0 yen if the Service is provided free of charge).'
+                ]
+            },
+            {
+                title: 'Article 7 (Governing Law and Jurisdiction)',
+                paragraphs: [
+                    'These Terms are governed by the laws of Japan. Any disputes arising in connection with the Service shall be subject to the exclusive jurisdiction of the Tokyo District Court in the first instance.'
+                ]
+            },
+            {
+                title: 'Article 8 (Miscellaneous)',
+                paragraphs: [
+                    'Even if any provision of these Terms is held invalid, the remaining provisions shall remain in full force and effect.'
+                ]
+            }
+        ],
+        lastUpdated: 'Last updated: 27 September 2025'
+    }
 }
 
 export default en

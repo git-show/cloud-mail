@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserved Words Utils Test</title>
+</head>
+<body>
+    <h1>Reserved Words Validation Test</h1>
+    
+    <div id="test-results"></div>
+
+    <script type="module">
+        // Import the reserved words utils
+        import reservedWordsUtils from '../mail-vue/src/utils/reserved-words-utils.js';
+
+        const testCases = [
+            // Test reserved words
+            { email: 'root@example.com', expected: false, reason: 'reservedWord' },
+            { email: 'admin@example.com', expected: false, reason: 'reservedWord' },
+            { email: 'system@example.com', expected: false, reason: 'reservedWord' },
+            
+            // Test short usernames (3 chars or less, including special characters)
+            { email: 'abc@example.com', expected: false, reason: 'reservedWord' },
+            { email: '123@example.com', expected: false, reason: 'reservedWord' },
+            { email: 'a1@example.com', expected: false, reason: 'reservedWord' },
+            { email: 'xy@example.com', expected: false, reason: 'reservedWord' },
+            { email: 'a-b@example.com', expected: false, reason: 'reservedWord' },
+            { email: 'x_1@example.com', expected: false, reason: 'reservedWord' },
+            { email: 'a.b@example.com', expected: false, reason: 'reservedWord' },
+            { email: '1-2@example.com', expected: false, reason: 'reservedWord' },
+            
+            // Test valid usernames
+            { email: 'user1234@example.com', expected: true },
+            { email: 'test-user@example.com', expected: true },
+            { email: 'john.doe@example.com', expected: true },
+            { email: 'longusername@example.com', expected: true },
+            
+            // Test edge cases
+            { email: 'abcd@example.com', expected: true }, // 4 chars, should be valid
+            { email: 'test_user@example.com', expected: true }, // 9 chars with underscore, should be valid
+            { email: 'user-123@example.com', expected: true }, // 8 chars with hyphen, should be valid
+        ];
+
+        function runTests() {
+            const resultsDiv = document.getElementById('test-results');
+            let passedTests = 0;
+            let totalTests = testCases.length;
+
+            testCases.forEach((testCase, index) => {
+                const result = reservedWordsUtils.validateEmailUsername(testCase.email);
+                const passed = result.isValid === testCase.expected;
+                
+                if (passed) {
+                    passedTests++;
+                }
+
+                const resultElement = document.createElement('div');
+                resultElement.style.marginBottom = '10px';
+                resultElement.style.padding = '5px';
+                resultElement.style.backgroundColor = passed ? '#d4edda' : '#f8d7da';
+                resultElement.style.border = `1px solid ${passed ? '#c3e6cb' : '#f5c6cb'}`;
+                resultElement.style.borderRadius = '4px';
+                
+                resultElement.innerHTML = `
+                    <strong>Test ${index + 1}:</strong> ${testCase.email}<br>
+                    Expected: ${testCase.expected ? 'Valid' : 'Invalid'}<br>
+                    Actual: ${result.isValid ? 'Valid' : 'Invalid'}<br>
+                    ${result.reason ? `Reason: ${result.reason}<br>` : ''}
+                    ${result.reservedWord ? `Reserved Word: ${result.reservedWord}<br>` : ''}
+                    Status: <strong style="color: ${passed ? 'green' : 'red'}">${passed ? 'PASS' : 'FAIL'}</strong>
+                `;
+                
+                resultsDiv.appendChild(resultElement);
+            });
+
+            // Summary
+            const summaryElement = document.createElement('div');
+            summaryElement.style.marginTop = '20px';
+            summaryElement.style.padding = '10px';
+            summaryElement.style.backgroundColor = '#e2e3e5';
+            summaryElement.style.border = '1px solid #d6d8db';
+            summaryElement.style.borderRadius = '4px';
+            summaryElement.innerHTML = `
+                <h3>Test Summary</h3>
+                <p>Passed: ${passedTests}/${totalTests}</p>
+                <p>Success Rate: ${((passedTests / totalTests) * 100).toFixed(1)}%</p>
+            `;
+            
+            resultsDiv.appendChild(summaryElement);
+        }
+
+        // Run tests when page loads
+        runTests();
+    </script>
+</body>
+</html>

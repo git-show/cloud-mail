@@ -68,6 +68,7 @@ const language = computed(() => {
     return 'zh_TW'
   }
 
+  // カタロニア語と日本語の言語ファイルが存在しないため、英語にフォールバック
   return 'en'
 })
 

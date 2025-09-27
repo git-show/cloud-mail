@@ -12,6 +12,7 @@ import turnstileService from './turnstile-service';
 import roleService from './role-service';
 import { t } from '../i18n/i18n';
 import verifyRecordService from './verify-record-service';
+import reservedWordsUtils from '../utils/reserved-words-utils';
 
 const accountService = {
 
@@ -39,6 +40,15 @@ const accountService = {
 			throw new BizError(t('notExistDomain'));
 		}
 
+		// Validate reserved words
+		const reservedWordsValidation = reservedWordsUtils.validateEmailUsername(email);
+		if (!reservedWordsValidation.isValid) {
+			if (reservedWordsValidation.reason === 'reservedWord') {
+				throw new BizError(t('reservedWordError'));
+			} else if (reservedWordsValidation.reason === 'shortAlphanumericError') {
+				throw new BizError(t('shortAlphanumericError'));
+			}
+		}
 
 		let accountRow = await this.selectByEmailIncludeDel(c, email);
 
