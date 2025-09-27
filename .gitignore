@@ -25,3 +25,6 @@ mail-vue/node_modules
 mail-vue/dist
 .wrangler
 .venv
+mail-worker/wrangler.toml
+mail-worker/package.json
+mail-worker/package-lock.json

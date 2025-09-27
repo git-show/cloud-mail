@@ -1,11 +1,9 @@
 <template>
   <footer class="app-footer">
-    <div class="app-footer__content">
-      <span class="app-footer__text">{{ copyrightText }}</span>
-      <router-link class="app-footer__link" to="/terms">
-        {{ $t('footer.terms') }}
-      </router-link>
-    </div>
+    <router-link class="app-footer__link" to="/terms">
+      {{ $t('footer.terms') }}
+    </router-link>
+    <span class="app-footer__text">{{ copyrightText }}</span>
   </footer>
 </template>
 
@@ -23,36 +21,35 @@ const copyrightText = computed(() => {
 
 <style scoped lang="scss">
 .app-footer {
-  width: 100%;
-  border-top: 1px solid var(--el-border-color);
-  margin-top: auto;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(8px);
+  position: fixed;
+  left: 16px;
+  bottom: 16px;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.82)!important;
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: var(--el-box-shadow-lighter);
+  font-size: 13px;
+  color: var(--el-text-color-secondary);
+  z-index: 250;
 
   @media (prefers-color-scheme: dark) {
-    background: rgba(30, 30, 30, 0.7);
+    background: rgba(247, 247, 247, 0.963);
+    box-shadow: var(--el-box-shadow-dark);
   }
 
-  &__content {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 18px 20px;
-    display: flex;
-    gap: 16px;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 14px;
-    color: var(--el-text-color-secondary);
-
-    @media (max-width: 767px) {
-      flex-direction: column;
-      gap: 12px;
-      text-align: center;
-    }
+  @media (max-width: 767px) {
+    left: 12px;
+    bottom: 12px;
+    padding: 10px 14px;
+    font-size: 12px;
   }
 
   &__link {
-    color: var(--el-color-primary);
+    color: #000;
     font-weight: 600;
     text-decoration: none;
     transition: color 0.2s ease;
@@ -60,6 +57,10 @@ const copyrightText = computed(() => {
     &:hover {
       color: var(--el-color-primary-light-3);
     }
+  }
+
+  &__text {
+    color: var(--el-text-color-secondary);
   }
 }
 </style>

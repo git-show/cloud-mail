@@ -1,7 +1,9 @@
 <template>
   <div class="terms-page">
     <header class="terms-page__header">
-  <router-link class="terms-page__brand" :to="homeRoute">cats.cat</router-link>
+      <router-link class="terms-page__back" :to="homeRoute" aria-label="Back">
+        <Icon icon="mingcute:left-line" class="terms-page__back-icon" width="24" height="24" />
+      </router-link>
       <LanguageSwitch class="terms-page__language" :teleported="false" placement="bottom-end" />
     </header>
     <main class="terms-page__body">
@@ -39,6 +41,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useI18n } from 'vue-i18n'
+import { Icon } from '@iconify/vue'
 import LanguageSwitch from '@/components/language-switch/index.vue'
 import AppFooter from '@/components/app-footer/index.vue'
 
@@ -73,11 +76,27 @@ const homeRoute = computed(() => (localStorage.getItem('token') ? '/inbox' : '/l
     margin-bottom: 32px;
   }
 
-  &__brand {
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--el-color-primary);
+  &__back {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    border: 1px solid var(--el-border-color);
+    color: var(--el-text-color-primary);
     text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--el-color-primary-light-9);
+      border-color: var(--el-color-primary-light-5);
+      color: var(--el-color-primary);
+    }
+  }
+
+  &__back-icon {
+    display: block;
   }
 
   &__language {
@@ -94,7 +113,7 @@ const homeRoute = computed(() => (localStorage.getItem('token') ? '/inbox' : '/l
     max-width: 960px;
     margin: 0 auto;
     width: 100%;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.9)!important;
     border-radius: 16px;
     box-shadow: var(--el-box-shadow);
     padding: 40px 28px;
