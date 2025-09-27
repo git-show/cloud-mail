@@ -91,13 +91,17 @@
             <span style="font-size: 12px;color: #F56C6C" v-if="botJsError">{{ $t('verifyModuleFailed') }}</span>
           </div>
           <div class="terms-agreement">
-            <div class="terms-item" @click="openTermsModal">
+            <div class="terms-item" 
+                 :class="{ 'disabled': termsAgreed }"
+                 @click="termsAgreed ? null : openTermsModal()">
               <Icon :icon="termsAgreed ? 'mingcute:check-circle-fill' : 'mingcute:close-circle-line'" 
                     :class="['agreement-icon', termsAgreed ? 'agreed' : 'not-agreed']" 
                     width="18" height="18" />
               <span class="agreement-text">{{ $t('termsOfService') }}</span>
             </div>
-            <div class="terms-item" @click="openPrivacyModal">
+            <div class="terms-item" 
+                 :class="{ 'disabled': privacyAgreed }"
+                 @click="privacyAgreed ? null : openPrivacyModal()">
               <Icon :icon="privacyAgreed ? 'mingcute:check-circle-fill' : 'mingcute:close-circle-line'" 
                     :class="['agreement-icon', privacyAgreed ? 'agreed' : 'not-agreed']" 
                     width="18" height="18" />
@@ -325,12 +329,14 @@ const privacyContent = computed(() => {
 
 // モーダル制御関数
 const openTermsModal = () => {
+  if (termsAgreed.value) return // 同意済みの場合は開かない
   showTermsModal.value = true
   termsScrolledToBottom.value = false
   termsModalAgreement.value = false
 }
 
 const openPrivacyModal = () => {
+  if (privacyAgreed.value) return // 同意済みの場合は開かない
   showPrivacyModal.value = true
   privacyScrolledToBottom.value = false
   privacyModalAgreement.value = false
@@ -727,10 +733,23 @@ function submitRegister() {
     cursor: pointer;
     padding: 8px;
     border-radius: 6px;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, opacity 0.2s;
     
-    &:hover {
+    &:hover:not(.disabled) {
       background-color: var(--el-fill-color-light);
+    }
+    
+    &.disabled {
+      cursor: not-allowed;
+      opacity: 0.6;
+      
+      &:hover {
+        background-color: transparent;
+      }
+      
+      .agreement-text {
+        color: var(--el-text-color-disabled);
+      }
     }
     
     .agreement-icon {
